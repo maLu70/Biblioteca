@@ -1,6 +1,9 @@
+import java.net.URL;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -10,9 +13,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        StackPane root = new StackPane();
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        URL url = getClass().getResource("/view/paginaLogin.fxml");
+        Parent root = FXMLLoader.load(url);
+        primaryStage.setTitle("Página Inicial");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 }
