@@ -36,9 +36,9 @@
         </columns>
       </TableView>
       <Button fx:id="btnVoltar" layoutX="22.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" textFill="WHITE" />
-      <Label layoutX="11.0" layoutY="-9.0" prefHeight="73.0" prefWidth="13.0" text="↤">
+      <Label layoutX="11.0" layoutY="-9.0" prefHeight="73.0" prefWidth="13.0" text="↤" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font size="28.0" />
          </font>
       </Label>
    </children>

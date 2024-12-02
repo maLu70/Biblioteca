@@ -22,4 +22,9 @@ public class paginaAcervoController {
 
     }
 
+    @FXML
+    void initialize() {
+        btnVoltar.setBackground(lblLabel.getBackground());
+    }
+
 }

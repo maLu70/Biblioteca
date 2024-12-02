@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
 
 public class paginaCRUDController {
 
@@ -22,7 +21,7 @@ public class paginaCRUDController {
     private Button btnRemover;
 
     @FXML
-    private Label btnVoltar;
+    private Button btnVoltar;
 
     @FXML
     private Label lblResultado;
@@ -51,8 +50,13 @@ public class paginaCRUDController {
     }
 
     @FXML
-    void voltar(MouseEvent event) {
+    void voltar(ActionEvent event) {
 
+    }
+
+    @FXML
+    void initialize() {
+        btnVoltar.setBackground(lblResultado.getBackground());
     }
 
 }

@@ -13,6 +13,9 @@ public class telaEmprestimoController {
     private Button btnEmprestar;
 
     @FXML
+    private Button btnVoltar;
+
+    @FXML
     private Label lblErroCPF;
 
     @FXML
@@ -28,5 +31,17 @@ public class telaEmprestimoController {
     void Entrar(ActionEvent event) {
 
     }
+
+    @FXML
+    void voltar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void initialize() {
+        btnVoltar.setBackground(txtCPF.getBackground());
+    }
+
+    
 
 }

@@ -3,7 +3,6 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 
 public class paginaLivrosEmprestadosController {
@@ -13,9 +12,6 @@ public class paginaLivrosEmprestadosController {
 
     @FXML
     private Button btnVoltar;
-
-    @FXML
-    private Label lblLabel;
 
     @FXML
     private TableView<?> tblEmprestimos;
@@ -30,4 +26,8 @@ public class paginaLivrosEmprestadosController {
 
     }
 
+    @FXML
+    void initialize() {
+        btnVoltar.setBackground(tblEmprestimos.getBackground());
+    }
 }

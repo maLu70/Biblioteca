@@ -35,12 +35,7 @@
             <TableColumn prefWidth="75.0" text="Cópias" />
         </columns>
       </TableView>
-      <Button layoutX="22.0" layoutY="15.0" mnemonicParsing="false" text="Voltar" textFill="WHITE" />
-      <Label fx:id="btnVoltar" layoutX="11.0" layoutY="-9.0" onDragDetected="#voltar" prefHeight="73.0" prefWidth="96.0" text="↤">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <Button fx:id="btnVoltar" layoutX="22.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltar" text="↤ Voltar" textFill="WHITE" />
       <Button fx:id="btnRemover" layoutX="99.0" layoutY="319.0" mnemonicParsing="false" onAction="#removerLivro" prefHeight="35.0" prefWidth="82.0" text="Remover" />
       <Button fx:id="btnEditar" layoutX="206.0" layoutY="319.0" mnemonicParsing="false" onAction="#editarLivro" prefHeight="35.0" prefWidth="82.0" text="Editar" />
       <Button fx:id="btnEmprestar" layoutX="311.0" layoutY="319.0" mnemonicParsing="false" onAction="#fazerEmprestimo" prefHeight="35.0" prefWidth="82.0" text="Emprestar" />

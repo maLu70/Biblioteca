@@ -11,8 +11,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.novoUsuarioController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#815e83" height="83.0" layoutX="-8.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="682.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3c8e4" height="346.0" layoutX="-139.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="790.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#815e83" height="83.0" layoutX="-8.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="615.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3c8e4" height="346.0" layoutX="-139.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="746.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="290.0" layoutX="75.0" layoutY="89.0" stroke="GOLDENROD" strokeType="INSIDE" strokeWidth="0.0" width="462.0" />
       <Button fx:id="btnNewUsuario" layoutX="269.0" layoutY="317.0" mnemonicParsing="false" onAction="#CriarUsuario" prefHeight="42.0" prefWidth="83.0" text="Criar">
          <font>
