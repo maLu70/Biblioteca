@@ -4,33 +4,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class PaginaInicialController {
-
-    @FXML
-    private Button btnEntrar;
+public class PaginaIniciaAdmlController {
 
     @FXML
     private Button btnPesquisa;
 
     @FXML
-    private ComboBox<?> comboBox;
+    private Button btnPesquisa1;
 
     @FXML
-    private Label lblBemVindo;
+    private ComboBox<?> comboBox;
 
     @FXML
     private TextField txtPesquisa;
 
     @FXML
     void PesquisarAcervo(ActionEvent event) {
-
-    }
-
-    @FXML
-    void clickLogin(ActionEvent event) {
 
     }
 

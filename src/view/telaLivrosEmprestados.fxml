@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paginaAcervoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paginaLivrosEmprestadosController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#815e83" height="83.0" layoutX="-8.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="613.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3c8e4" height="346.0" layoutX="-139.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="745.0" />
@@ -19,20 +19,20 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#88478d" height="42.0" layoutX="61.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="476.0" />
-      <Label fx:id="lblLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="76.0" prefHeight="27.0" prefWidth="466.0" text="Resultados para &quot;&quot;" textFill="WHITE">
+      <Label fx:id="lblLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="76.0" prefHeight="27.0" prefWidth="466.0" text="Livros Emprestados" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tblAcervo" layoutX="22.0" layoutY="130.0" prefHeight="240.0" prefWidth="554.0">
+      <TableView fx:id="tblEmprestimos" layoutX="22.0" layoutY="124.0" prefHeight="194.0" prefWidth="554.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Código" />
           <TableColumn prefWidth="75.0" text="Nome" />
             <TableColumn prefWidth="75.0" text="Autor" />
             <TableColumn prefWidth="75.0" text="Editora" />
             <TableColumn prefWidth="75.0" text="Publicação" />
-            <TableColumn prefWidth="75.0" text="Situação" />
-            <TableColumn prefWidth="75.0" text="Cópias" />
+            <TableColumn prefWidth="75.0" text="Empréstimo" />
+            <TableColumn prefWidth="75.0" text="Devoluçao" />
         </columns>
       </TableView>
       <Button fx:id="btnVoltar" layoutX="22.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltar" text="Voltar" textFill="WHITE" />
@@ -41,5 +41,6 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Button fx:id="btnDevolucao" layoutX="218.0" layoutY="330.0" mnemonicParsing="false" onAction="#devolucao" prefHeight="42.0" prefWidth="159.0" text="Registrar Devolução" />
    </children>
 </AnchorPane>
