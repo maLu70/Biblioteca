@@ -44,23 +44,38 @@ public class novoUsuarioController {
 
     public Boolean VerificarCPF(String cpf) {
 
-        int somadocpf =0, digitoverificador, soma2=0;
-        String[] arraycpf = cpf.split(cpf);
+        cpf = cpf.replaceAll("[^0-9]", "");
 
-        for(int cont = 0 ; cont < arraycpf.length ; cont++){
-            somadocpf = Integer.parseInt(arraycpf[cont])*Integer.parseInt(arraycpf[cont]);
-        }
-        digitoverificador = somadocpf/11;
-        String auxdigito = digitoverificador+"";
-        digitoverificador = Integer.parseInt(auxdigito.charAt(auxdigito.length()-1)+"");
-        int cont2=0;
 
-        for(int cont = digitoverificador ; digitoverificador < digitoverificador+11 ; cont++){
-            soma2 = Integer.parseInt(arraycpf[cont])*digitoverificador;
+        if (cpf.length() != 11) {
+            return false;
         }
-        int digitoverificador2 = soma2/11;
-        auxdigito = digitoverificador2+"";
-        digitoverificador2 = Integer.parseInt(auxdigito.charAt(auxdigito.length()-1)+"");
-         
+
+
+        int soma1 =0, soma2=0 ,peso=10, digitoverificador1, digitoverificador2;
+
+        for(int cont = 0 ; cont < 9; cont++){
+            soma1 += Integer.parseInt(cpf.substring(cont, cont+1)) * peso--;
+        }
+        digitoverificador1 = soma1 % 11;
+        if (digitoverificador1 < 2) {
+            digitoverificador1 = 0;
+        }else{
+            digitoverificador1 = 11 - digitoverificador1;
+        }
+
+       int peso2=11;
+       for (int cont=0; cont <10; cont++) {
+           soma2 +=Integer.parseInt(cpf.substring(cont, cont+1)) * peso2--;
+       }
+       digitoverificador2 = soma2%11;
+       if(digitoverificador2<2){
+            digitoverificador2 = 0;
+
+    }else{
+        digitoverificador2 = 11 - digitoverificador2;
     }
+
+    return  cpf.charAt(9) == (char) (digitoverificador1 + '0') && cpf.charAt(10) == (char) (digitoverificador2 + '0');
+}
 }
