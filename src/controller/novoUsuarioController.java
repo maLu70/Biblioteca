@@ -40,6 +40,15 @@ public class novoUsuarioController {
     @FXML
     void CriarUsuario(ActionEvent event) {
 
+        if (VerificarCPF(txtCPF.getText())) {  
+        }else{
+            lblErroCPF.setText("CPF deve conter 11 caracteres numéricos");
+        }
+        if (VerificarCPF(txtCPF.getText()) && dpNasci.getValue()!=null && txtEmail.getText().contains("@")&&txtEmail.getText().length()>10 && txtNome.getText()!=null &&txtSenha.getText()!=null) {
+          System.out.println("adicionar usuário no BD");  
+        }else{
+            System.out.println("mensagem de erro");
+        }
     }
 
     public Boolean VerificarCPF(String cpf) {
@@ -77,5 +86,8 @@ public class novoUsuarioController {
     }
 
     return  cpf.charAt(9) == (char) (digitoverificador1 + '0') && cpf.charAt(10) == (char) (digitoverificador2 + '0');
+}public boolean verificadordesenha(String senha){
+    return true;
+    //fazer
 }
 }
