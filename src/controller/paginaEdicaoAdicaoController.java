@@ -39,10 +39,14 @@ public class paginaEdicaoAdicaoController {
     
         @FXML
         void initialize() {
-            if (paginaCRUDController.getDeleteeedit()==1) {
-                btnAdicaoEdicao.setText("Editar");
-                lblAdicaoEdicao.setText("Edite seu Livro!");
-                
+                if (paginaCRUDController.getDeleteeedit()==1) {
+            //         btnAdicaoEdicao.setText("Editar");
+            //         lblAdicaoEdicao.setText("Edite seu Livro!");
+            //         txtAutor.setText(paginaCRUDController.getLivro().getAutor()); 
+            //         txtCopias.setText(paginaCRUDController.getLivro().getNCopias()+"");
+            //         txtEditora.setText(paginaCRUDController.getLivro().getEditora());
+            //         txtPubli.setText(paginaCRUDController.getLivro().getAnoPublicacao()+"");
+            //         txtTitulo.setText(paginaCRUDController.getLivro().getTitulo());
             }else if(paginaCRUDController.getDeleteeedit()==5){
                 
                 btnAdicaoEdicao.setText("Adicionar");
@@ -77,8 +81,8 @@ public class paginaEdicaoAdicaoController {
                     alerta.setContentText("Preencha totas as informações corretamente");
                     alerta.show();
                 }
-            } else if (btnAdicaoEdicao.getText() == "Renovar") {
-    
+            } else if (paginaCRUDController.getDeleteeedit()==1) {
+               
             }
 
    

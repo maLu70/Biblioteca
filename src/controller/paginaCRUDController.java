@@ -21,6 +21,16 @@ import model.Livro;
 
 public class paginaCRUDController {
 
+    public static Livro livroaux;
+    
+    public static Livro getLivro() {
+        return livroaux;
+    }
+
+    public static void setLivro(Livro livroaux) {
+        paginaCRUDController.livroaux = livroaux;
+    }
+
     public static int deleteeedit;
     // 1 edit
     // 2 delete
@@ -80,7 +90,7 @@ public class paginaCRUDController {
 
     @FXML
     void editarLivro(ActionEvent event) throws IOException {
-
+        livroaux = tblAcervo.getSelectionModel().getSelectedItem();
         setDeleteeedit(1);
         URL url = getClass().getResource("/view/paginaEdicaoAdicao.fxml");
 
@@ -96,6 +106,7 @@ public class paginaCRUDController {
 
     @FXML
     void fazerEmprestimo(ActionEvent event) throws IOException {
+        livroaux = tblAcervo.getSelectionModel().getSelectedItem();
         URL url = getClass().getResource("/view/telaEmprestimo.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
@@ -112,6 +123,7 @@ public class paginaCRUDController {
 
     @FXML
     void registrarDevolucao(ActionEvent event) throws IOException {
+        livroaux = tblAcervo.getSelectionModel().getSelectedItem();
         URL url = getClass().getResource("/view/telaEmprestimo.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
