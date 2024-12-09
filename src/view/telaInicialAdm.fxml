@@ -8,31 +8,27 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaginaInicialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.telaInicialAdmController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#815e83" height="69.0" layoutX="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="614.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3c8e4" height="335.0" layoutX="-139.0" layoutY="68.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="745.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="222.0" layoutX="126.0" layoutY="113.0" stroke="GOLDENROD" strokeType="INSIDE" strokeWidth="0.0" width="348.0" />
-      <ComboBox fx:id="comboBox" layoutX="149.0" layoutY="200.0" prefHeight="34.0" prefWidth="302.0" promptText="Termo Livre" />
-      <Button fx:id="btnPesquisa" layoutX="149.0" layoutY="269.0" mnemonicParsing="false" onAction="#PesquisarAcervo" prefHeight="42.0" prefWidth="302.0" text="⌕ Pesquisar">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="243.0" layoutX="126.0" layoutY="113.0" stroke="GOLDENROD" strokeType="INSIDE" strokeWidth="0.0" width="348.0" />
+      <ComboBox fx:id="comboBox" layoutX="149.0" layoutY="183.0" prefHeight="34.0" prefWidth="302.0" promptText="Termo Livre" />
+      <Button fx:id="btnPesquisa" layoutX="149.0" layoutY="236.0" mnemonicParsing="false" onAction="#PesquisarAcervo" prefHeight="42.0" prefWidth="302.0" text="⌕ Pesquisar">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="txtPesquisa" layoutX="149.0" layoutY="145.0" prefHeight="34.0" prefWidth="302.0" promptText="Pesquisa" />
+      <TextField fx:id="txtPesquisa" layoutX="149.0" layoutY="135.0" prefHeight="34.0" prefWidth="302.0" promptText="Pesquisa" />
       <Label layoutX="82.0" layoutY="14.0" prefHeight="35.0" prefWidth="422.0" text="Biblioteca Carvalho Dourado - Acervo Online" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnEntrar" layoutX="265.0" layoutY="343.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="62.0" text="Entrar">
+      <Button fx:id="btnAdicionar" layoutX="148.0" layoutY="292.0" mnemonicParsing="false" onAction="#adicionarLivro" prefHeight="42.0" prefWidth="302.0" text="Novo Livro">
          <font>
-            <Font size="14.0" />
-         </font></Button>
-      <Label layoutX="256.0" layoutY="345.0" text="➜">
-         <font>
-            <Font size="18.0" />
+            <Font size="15.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>

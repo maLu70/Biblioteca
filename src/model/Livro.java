@@ -3,9 +3,17 @@ package model;
 public class Livro {
     int idLivro, anoPublicacao, nCopias;
     String titulo, editora, autor;
+    boolean emprestimo;
 
-    public Livro(int idLivro, int anoPublicacao, int nCopias, String titulo, String editora, String autor) {
-        this.idLivro = idLivro;
+    public boolean isEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(boolean emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    public Livro(int anoPublicacao, int nCopias, String titulo, String editora, String autor) {
         this.anoPublicacao = anoPublicacao;
         this.nCopias = nCopias;
         this.titulo = titulo;

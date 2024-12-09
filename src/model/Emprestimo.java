@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Emprestimo {
     Date dtEmprestimo, dtDevolucao;
     int idEmprestimo, idLivro, cpf;
+    Pessoa pessoa;
 
     public Emprestimo(Date dtEmprestimo, Date dtDevolucao, int idEmprestimo, int idLivro, int cpf) {
         this.dtEmprestimo = dtEmprestimo;

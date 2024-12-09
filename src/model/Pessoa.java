@@ -1,17 +1,17 @@
 package model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Pessoa {
     int cpf, telefone;
     String nome, email, senha;
     boolean adm;
-    Date dtNascimento;
+    LocalDate dtNascimento;
 
     public Pessoa() {
     }
 
-    public Pessoa(int cpf, int telefone, String nome, String email, String senha, boolean adm, Date dtNascimento) {
+    public Pessoa(int cpf, int telefone, String nome, String email, String senha, boolean adm, LocalDate dtNascimento) {
         this.cpf = cpf;
         this.telefone = telefone;
         this.nome = nome;
@@ -69,11 +69,11 @@ public class Pessoa {
         this.adm = adm;
     }
 
-    public Date getDtNascimento() {
+    public LocalDate getDtNascimento() {
         return dtNascimento;
     }
 
-    public void setDtNascimento(Date dtNascimento) {
+    public void setDtNascimento(LocalDate dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 }
