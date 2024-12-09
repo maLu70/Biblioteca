@@ -28,6 +28,9 @@ public class telaEmprestimoController {
     private PasswordField txtLivro;
 
     @FXML
+    private Label lblemprestimodevolucao;
+
+    @FXML
     void Entrar(ActionEvent event) {
 
     }
@@ -40,6 +43,17 @@ public class telaEmprestimoController {
     @FXML
     void initialize() {
         btnVoltar.setBackground(txtCPF.getBackground());
+
+        if (paginaCRUDController.getDeleteeedit() == 3) {
+            lblemprestimodevolucao.setText("Empréstimo");
+            btnEmprestar.setText("Realizar emprestimo");
+            
+            
+        }else if (paginaCRUDController.getDeleteeedit() == 4) {
+            lblemprestimodevolucao.setText("Devolção");
+            btnEmprestar.setText("Realizar devolução");
+            
+        }
     }
 
     

@@ -16,18 +16,19 @@ public class LivroDao {
     public static boolean cadastrarLivro(Livro livro) {
 
         String sql;
-        sql = "INSERT INTO Livro (anoPublicacao, nCopias, titulo, editora, autor) ";
-        sql += "VALUES (?, ?, ?, ?, ?)";
+        sql = "INSERT INTO Livro (anoPublicacao, nCopias, titulo, editora, autor, situacao) ";
+        sql += "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, livro.getAnoPublicacao());
-            ps.setInt(2, livro.getnCopias());
+            ps.setInt(2, livro.getNCopias());
             ps.setString(3, livro.getTitulo());
             ps.setString(4, livro.getEditora());
             ps.setString(5, livro.getAutor());
+            ps.setString(6, livro.getSituacao());
 
             return (ps.executeUpdate() > 0);
 
@@ -66,14 +67,14 @@ public class LivroDao {
 
     public static boolean delete(Livro livro) {
         String sql;
-        sql = "delete * from Livro ";
+        sql = "delete from Livro ";
         sql += "where idLivro=?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setInt(2, livro.getIdLivro());
+            ps.setInt(1, livro.getIdLivro());
 
             return (ps.executeUpdate() > 0);
 
@@ -103,10 +104,11 @@ public class LivroDao {
 
                 livro.setIdLivro(rs.getInt("idLivro"));
                 livro.setTitulo(rs.getString("titulo"));
-                livro.setnCopias(rs.getInt("nCopias"));
+                livro.setNCopias(rs.getInt("nCopias"));
                 livro.setEditora(rs.getString("editora"));
                 livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
                 livro.setAutor(rs.getString("autor"));
+                livro.setSituacao(rs.getString("situacao"));
                 //livro.setEmprestimo(rs.getBoolean("emprestimo"));
 
                 // livro.setIdLivro(rs.getInt("colCodigo"));

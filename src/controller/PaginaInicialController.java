@@ -52,13 +52,24 @@ public class PaginaInicialController {
         List<Livro> lst = LivroDao.listar(txtPesquisa.getText());
 
         paginaAcervoController controller = loader.getController();
-
-        controller.obsLiv;
     }
 
     @FXML
-    void clickLogin(ActionEvent event) {
+    void clickLogin(ActionEvent event) throws IOException {
+        
+        URL url = getClass().getResource("/view/paginaLogin.fxml");
 
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Pagina de Login");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+
+        paginaAcervoController controller = loader.getController();
     }
 
+    
 }

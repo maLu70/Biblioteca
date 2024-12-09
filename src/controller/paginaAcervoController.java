@@ -36,7 +36,7 @@ public class paginaAcervoController {
     private TableColumn<Livro, Integer> colPublicacao;
 
     @FXML
-    private TableColumn<Livro, Boolean> colSituacao;
+    private TableColumn<Livro, String> colSituacao;
 
     @FXML
     private Label lblLabel;
@@ -56,7 +56,7 @@ public class paginaAcervoController {
         colEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colPublicacao.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        //colSituacao.setCellValueFactory(new PropertyValueFactory<>("emprestimo"));
+        colSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));        //colSituacao.setCellValueFactory(new PropertyValueFactory<>("emprestimo"));
 
 
 

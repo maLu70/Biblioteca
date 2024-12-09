@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paginaCRUDController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.paginaCRUDController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#815e83" height="83.0" layoutX="-8.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="613.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e3c8e4" height="346.0" layoutX="-7.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="613.0" />
@@ -26,13 +26,13 @@
       </Label>
       <TableView fx:id="tblAcervo" layoutX="22.0" layoutY="130.0" prefHeight="174.0" prefWidth="554.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Código" />
-          <TableColumn prefWidth="75.0" text="Nome" />
-            <TableColumn prefWidth="75.0" text="Autor" />
-            <TableColumn prefWidth="75.0" text="Editora" />
-            <TableColumn prefWidth="75.0" text="Publicação" />
-            <TableColumn prefWidth="75.0" text="Situação" />
-            <TableColumn prefWidth="75.0" text="Cópias" />
+          <TableColumn fx:id="colcod" prefWidth="75.0" text="Código" />
+          <TableColumn fx:id="colnome" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="colautor" prefWidth="75.0" text="Autor" />
+            <TableColumn fx:id="coleditora" prefWidth="75.0" text="Editora" />
+            <TableColumn fx:id="colpub" prefWidth="75.0" text="Publicação" />
+            <TableColumn fx:id="colsituacao" prefWidth="75.0" text="Situação" />
+            <TableColumn fx:id="colcopias" prefWidth="75.0" text="Cópias" />
         </columns>
       </TableView>
       <Button fx:id="btnVoltar" layoutX="22.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltar" text="↤ Voltar" textFill="WHITE" />

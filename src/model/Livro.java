@@ -4,6 +4,7 @@ public class Livro {
     int idLivro, anoPublicacao, nCopias;
     String titulo, editora, autor;
     boolean emprestimo;
+    String situacao;
 
     public boolean isEmprestimo() {
         return emprestimo;
@@ -13,12 +14,21 @@ public class Livro {
         this.emprestimo = emprestimo;
     }
 
-    public Livro(int anoPublicacao, int nCopias, String titulo, String editora, String autor) {
+    public Livro(int anoPublicacao, int nCopias, String titulo, String editora, String autor, String situacao) {
         this.anoPublicacao = anoPublicacao;
         this.nCopias = nCopias;
         this.titulo = titulo;
         this.editora = editora;
         this.autor = autor;
+        this.situacao = situacao;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     public Livro() {
@@ -40,11 +50,11 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public int getnCopias() {
+    public int getNCopias() {
         return nCopias;
     }
 
-    public void setnCopias(int nCopias) {
+    public void setNCopias(int nCopias) {
         this.nCopias = nCopias;
     }
 

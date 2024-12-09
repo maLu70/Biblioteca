@@ -46,7 +46,7 @@ public class novoUsuarioController {
     void CriarUsuario(ActionEvent event) {
 
         if (VerificarCPF(txtCPF.getText()) && dpNasci.getValue() != null && txtEmail.getText().contains("@")
-                && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null) {
+                && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null && txtCPF.getText().length() == 11) {
 
             Pessoa usuario = new Pessoa(txtCPF.getText(), Integer.parseInt(txtTel.getText()),
                     txtNome.getText(), txtEmail.getText(), txtSenha.getText(), false, dpNasci.getValue());
