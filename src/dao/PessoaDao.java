@@ -27,7 +27,7 @@ public class PessoaDao {
             ps.setObject(3, usuario.getDtNascimento());
             ps.setString (4, usuario.getEmail() );
             ps.setString(5, usuario.getSenha());
-            ps.setInt(6, usuario.getCpf());
+            ps.setString(6, usuario.getCpf());
             ps.setObject(7, usuario.isAdm());
 
             return (ps.executeUpdate() > 0);
@@ -53,7 +53,7 @@ public class PessoaDao {
             ps.setObject(3, dtNascimento);
             ps.setString (4, email);
             ps.setString(5, senha);
-            ps.setInt(6, usuario.getCpf());
+            ps.setString(6, usuario.getCpf());
 
             return (ps.executeUpdate() > 0);
 

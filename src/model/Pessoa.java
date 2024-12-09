@@ -3,15 +3,15 @@ package model;
 import java.time.LocalDate;
 
 public class Pessoa {
-    int cpf, telefone;
-    String nome, email, senha;
+    int  telefone;
+    String  cpf,nome, email, senha;
     boolean adm;
     LocalDate dtNascimento;
 
     public Pessoa() {
     }
 
-    public Pessoa(int cpf, int telefone, String nome, String email, String senha, boolean adm, LocalDate dtNascimento) {
+    public Pessoa(String cpf, int telefone, String nome, String email, String senha, boolean adm, LocalDate dtNascimento) {
         this.cpf = cpf;
         this.telefone = telefone;
         this.nome = nome;
@@ -21,11 +21,11 @@ public class Pessoa {
         this.dtNascimento = dtNascimento;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

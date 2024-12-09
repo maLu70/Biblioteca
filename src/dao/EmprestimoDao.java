@@ -24,7 +24,7 @@ public class EmprestimoDao {
             ps.setDate(1, emprestimo.getDtEmprestimo());
             ps.setDate    (2, emprestimo.getDtDevolucao() );
             ps.setInt (3, emprestimo.getIdLivro()    );
-            ps.setInt (4, emprestimo.getCpf() );
+            ps.setString (4, emprestimo.getCpf() );
 
             return (ps.executeUpdate() > 0);
 

@@ -45,10 +45,10 @@ public class novoUsuarioController {
     @FXML
     void CriarUsuario(ActionEvent event) {
 
-        if (txtCPF.getText() != null && dpNasci.getValue() != null && txtEmail.getText().contains("@")
+        if (VerificarCPF(txtCPF.getText()) && dpNasci.getValue() != null && txtEmail.getText().contains("@")
                 && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null) {
 
-            Pessoa usuario = new Pessoa(Integer.parseInt(txtCPF.getText()), Integer.parseInt(txtTel.getText()),
+            Pessoa usuario = new Pessoa(txtCPF.getText(), Integer.parseInt(txtTel.getText()),
                     txtNome.getText(), txtEmail.getText(), txtSenha.getText(), false, dpNasci.getValue());
 
             PessoaDao.cadastrarUsuario(usuario);
@@ -64,7 +64,8 @@ public class novoUsuarioController {
     }
 
     public Boolean VerificarCPF(String cpf) {
-
+      
+        
         cpf = cpf.replaceAll("[^0-9]", "");
 
         if (cpf.length() != 11) {
@@ -97,10 +98,8 @@ public class novoUsuarioController {
 
         return cpf.charAt(9) == (char) (digitoverificador1 + '0')
                 && cpf.charAt(10) == (char) (digitoverificador2 + '0');
+            }
     }
 
-    public boolean verificadordesenha(String senha) {
-        return true;
-        // fazer
-    }
-}
+    
+    
