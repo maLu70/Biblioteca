@@ -1,15 +1,23 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
+
 import dao.LivroDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Livro;
 
 public class paginaAcervoController {
@@ -68,8 +76,19 @@ public class paginaAcervoController {
     }
 
     @FXML
-    void voltarAcervo(ActionEvent event) {
+    void voltarAcervo(ActionEvent event) throws IOException {
+    URL url = getClass().getResource("/view/paginaInicial.fxml");
 
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    currentStage.close();
     }
 
 }

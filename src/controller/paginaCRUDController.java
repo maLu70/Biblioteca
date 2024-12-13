@@ -9,8 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -91,16 +94,27 @@ public class paginaCRUDController {
     @FXML
     void editarLivro(ActionEvent event) throws IOException {
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
-        setDeleteeedit(1);
-        URL url = getClass().getResource("/view/paginaEdicaoAdicao.fxml");
 
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Stage stgAcervo = new Stage();
-        stgAcervo.setTitle("Página edição");
-        stgAcervo.setScene(new Scene(root));
-        stgAcervo.show();
+        if (livroaux==null) {
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setHeaderText("Erro ao atualizar livro");
+            alerta.setContentText("selecione um livro para atualizar");
+            alerta.show();
+        }
+        else{
+            setDeleteeedit(1);
+            URL url = getClass().getResource("/view/paginaEdicaoAdicao.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+            Stage stgAcervo = new Stage();
+            stgAcervo.setTitle("Página edição");
+            stgAcervo.setScene(new Scene(root));
+            stgAcervo.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+            
+            
+    }
 
     }
 
@@ -116,6 +130,9 @@ public class paginaCRUDController {
         stgAcervo.setTitle("Página emprestimo");
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    currentStage.close();
 
         setDeleteeedit(4);
 
@@ -133,6 +150,9 @@ public class paginaCRUDController {
         stgAcervo.setTitle("Página de Devolução");
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    currentStage.close();
 
         setDeleteeedit(3);
 
@@ -164,8 +184,20 @@ public class paginaCRUDController {
     }
 
     @FXML
-    void voltar(ActionEvent event) {
+    void voltar(ActionEvent event) throws IOException {
 
+        URL url = getClass().getResource("/view/paginaInicial.fxml");
+
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     ObservableList<Livro> obsLiv;

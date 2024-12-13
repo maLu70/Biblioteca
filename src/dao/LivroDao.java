@@ -43,19 +43,20 @@ public class LivroDao {
 
         String sql;
         sql = "update Livro ";
-        sql += "set anoPublicacao=?, nCopias=?, titulo=?, editora=?, autor=? WHERE id=?";
+        sql += "set anoPublicacao=?, nCopias=?, titulo=?, editora=?, autor=? WHERE idLivro=?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setInt(1, anoPublicacao);
-            ps.setInt(2, nCopias);
-            ps.setString(3, titulo);
-            ps.setString(4, editora);
-            ps.setString(5, autor);
+            
+            ps.setInt(1, livro.getAnoPublicacao());
+            ps.setInt(2, livro.getNCopias());
+            ps.setString(3, livro.getTitulo());
+            ps.setString(4, livro.getEditora());
+            ps.setString(5, livro.getAutor());
             ps.setInt(6, livro.getIdLivro());
-
+         
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
