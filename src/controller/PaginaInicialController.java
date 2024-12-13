@@ -2,10 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 
-import dao.LivroDao;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Livro;
 
 public class PaginaInicialController {
 
@@ -39,19 +34,24 @@ public class PaginaInicialController {
     @FXML
     void PesquisarAcervo(ActionEvent event) throws IOException {
 
-        URL url = getClass().getResource("/view/paginaAcervo.fxml");
+        String pesquisa = txtPesquisa.getText();
+        System.out.println("pesquis = " + pesquisa);
 
+        URL url = getClass().getResource("/view/paginaAcervo.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+
+        paginaAcervoController controller = loader.getController();
+
+        controller.initialize(pesquisa);;
 
         Stage stgAcervo = new Stage();
         stgAcervo.setTitle("Página Inicial");
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
 
-        List<Livro> lst = LivroDao.listar(txtPesquisa.getText());
+        // List<Livro> lst = LivroDao.listar(txtPesquisa.getText());
 
-        paginaAcervoController controller = loader.getController();
     }
 
     @FXML

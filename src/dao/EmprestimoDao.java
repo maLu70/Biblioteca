@@ -23,13 +23,13 @@ public class EmprestimoDao {
 
             ps.setDate(1, emprestimo.getDtEmprestimo());
             ps.setDate    (2, emprestimo.getDtDevolucao() );
-            ps.setInt (3, emprestimo.getIdLivro()    );
-            ps.setString (4, emprestimo.getCpf() );
+            ps.setInt (3, emprestimo.getLivro().getIdLivro());
+            ps.setString (4, emprestimo.getPessoa().getCpf() );
 
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            System.out.println("ERRO AO INSERIR: " + e.getMessage());
+            System.out.println("ERRO AO emprestar: " + e.getMessage());
             return false;
         }
     }  
@@ -49,7 +49,7 @@ public class EmprestimoDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
-            System.out.println("ERRO AO INSERIR: " + e.getMessage());
+            System.out.println("ERRO AO renovar: " + e.getMessage());
             return false;
         }
     }  

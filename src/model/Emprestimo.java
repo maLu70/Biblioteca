@@ -4,16 +4,16 @@ import java.sql.Date;
 
 public class Emprestimo {
     Date dtEmprestimo, dtDevolucao;
-    int idEmprestimo, idLivro ;
-    String cpf;
+    int idEmprestimo;
+    Livro livro;
     Pessoa pessoa;
 
-    public Emprestimo(Date dtEmprestimo, Date dtDevolucao, int idEmprestimo, int idLivro, String cpf) {
+    public Emprestimo(Date dtEmprestimo, Date dtDevolucao, int idEmprestimo, Livro livro, Pessoa pessoa) {
         this.dtEmprestimo = dtEmprestimo;
         this.dtDevolucao = dtDevolucao;
         this.idEmprestimo = idEmprestimo;
-        this.idLivro = idLivro;
-        this.cpf = cpf;
+        this.livro = livro;
+        this.pessoa = pessoa;
     }
 
     public Emprestimo() {
@@ -43,20 +43,20 @@ public class Emprestimo {
         this.idEmprestimo = idEmprestimo;
     }
 
-    public int getIdLivro() {
-        return idLivro;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public void setIdLivro(int idLivro) {
-        this.idLivro = idLivro;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
 }

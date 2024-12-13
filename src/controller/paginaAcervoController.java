@@ -55,7 +55,7 @@ public class paginaAcervoController {
     ObservableList<Livro> obsLiv;
 
     @FXML
-    void initialize() {
+    void initialize(String texto) {
         btnVoltarAcervo.setBackground(lblLabel.getBackground());
 
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
@@ -64,20 +64,17 @@ public class paginaAcervoController {
         colEditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colPublicacao.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        colSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));        //colSituacao.setCellValueFactory(new PropertyValueFactory<>("emprestimo"));
+        colSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 
-
-
-        //obsLiv = FXCollections.observableArrayList();
-
-        obsLiv = FXCollections.observableList(LivroDao.listar(null));
+        obsLiv = FXCollections.observableList(LivroDao.listar(texto));
+        System.out.println("pesquisa texto = " + texto);
 
         tblAcervo.setItems(obsLiv);
     }
 
     @FXML
     void voltarAcervo(ActionEvent event) throws IOException {
-    URL url = getClass().getResource("/view/paginaInicial.fxml");
+        URL url = getClass().getResource("/view/paginaInicial.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
@@ -88,7 +85,7 @@ public class paginaAcervoController {
         stgAcervo.show();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    currentStage.close();
+        currentStage.close();
     }
 
 }

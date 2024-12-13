@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,18 +85,23 @@ public class LivroDao {
     }
 
     public static List<Livro> listar(String titulo) {
-
         List<Livro> lista = new ArrayList<Livro>();
-
-        //String sql = "SELECT * FROM Livro where titulo=?";
+    
+        // A consulta foi modificada para filtrar pelo título (caso o parâmetro 'titulo' não seja nulo ou vazio)
         String sql = "SELECT * FROM Livro";
+        
+    if (titulo != null) {
+        sql += " WHERE titulo LIKE ?";
+        System.out.println("pesquisei");
+    }
 
-        try (Connection con = ConexaoMySQL.getConexao()) {
+    try (Connection con = ConexaoMySQL.getConexao()) {
+        PreparedStatement ps = con.prepareStatement(sql);
 
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            //ps.setString(1, titulo);
-
+        if (titulo != null) {
+            ps.setString(1, "%" + titulo + "%");
+        }
+    
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
