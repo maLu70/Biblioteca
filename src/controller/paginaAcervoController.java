@@ -56,6 +56,8 @@ public class paginaAcervoController {
 
     @FXML
     void initialize(String texto) {
+
+        lblLabel.setText("Resultados para"+texto);
         btnVoltarAcervo.setBackground(lblLabel.getBackground());
 
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("idLivro"));

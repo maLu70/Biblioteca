@@ -50,8 +50,6 @@ public class PaginaInicialController {
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
 
-        // List<Livro> lst = LivroDao.listar(txtPesquisa.getText());
-
     }
 
     @FXML

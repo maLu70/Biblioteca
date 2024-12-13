@@ -28,8 +28,23 @@ public class telaInicialAdmController {
     private TextField txtPesquisa;
 
     @FXML
-    void PesquisarAcervo(ActionEvent event) {
+    void PesquisarAcervo(ActionEvent event) throws IOException {
 
+        String pesquisa = txtPesquisa.getText();
+        System.out.println("pesquis = " + pesquisa);
+
+        URL url = getClass().getResource("/view/paginaAcervo.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        paginaAcervoController controller = loader.getController();
+
+        controller.initialize(pesquisa);;
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página Inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
     }
 
     @FXML
