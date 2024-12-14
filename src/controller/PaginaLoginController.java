@@ -7,6 +7,7 @@ import dao.PessoaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -65,6 +66,8 @@ public class PaginaLoginController {
         stgAcervo.setTitle("Página Inicial");
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
     }
 

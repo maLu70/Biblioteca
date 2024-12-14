@@ -2,6 +2,10 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -9,7 +13,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Pessoa;
+
+import java.io.IOException;
+import java.net.URL;
 
 import dao.PessoaDao;
 
@@ -43,7 +51,7 @@ public class novoUsuarioController {
     private TextField txtTel;
 
     @FXML
-    void CriarUsuario(ActionEvent event) {
+    void CriarUsuario(ActionEvent event) throws IOException {
 
         if (VerificarCPF(txtCPF.getText()) && dpNasci.getValue() != null && txtEmail.getText().contains("@")
                 && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null && txtCPF.getText().length() == 11) {
@@ -52,6 +60,22 @@ public class novoUsuarioController {
                     txtNome.getText(), txtEmail.getText(), txtSenha.getText(), false, dpNasci.getValue());
 
             PessoaDao.cadastrarUsuario(usuario);
+
+
+             
+        URL url = getClass().getResource("/view/paginaLogin.fxml");
+
+        FXMLLoader loader = new FXMLLoader(url);
+
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Pagina de Login");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
 
             System.out.println("usuario adicionado");
         } else {

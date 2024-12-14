@@ -13,7 +13,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL url = getClass().getResource("/view/paginaLogin.fxml");
+        URL url = getClass().getResource("/view/telaLivrosEmprestados.fxml");
         Parent root = FXMLLoader.load(url);
         primaryStage.setTitle("Página Inicial");
         primaryStage.setScene(new Scene(root));

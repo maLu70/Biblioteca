@@ -135,4 +135,105 @@ public class LivroDao {
         }
 
     }
+    public static List<Livro> listarporautr(String titulo) {
+        List<Livro> lista = new ArrayList<Livro>();
+    
+        // A consulta foi modificada para filtrar pelo título (caso o parâmetro 'titulo' não seja nulo ou vazio)
+        String sql = "SELECT * FROM Livro";
+        
+    if (titulo != null) {
+        sql += " WHERE autor LIKE ?";
+        System.out.println("pesquisei");
+    }
+
+    try (Connection con = ConexaoMySQL.getConexao()) {
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        if (titulo != null) {
+            ps.setString(1, "%" + titulo + "%");
+        }
+    
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Livro livro = new Livro();
+
+                livro.setIdLivro(rs.getInt("idLivro"));
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setNCopias(rs.getInt("nCopias"));
+                livro.setEditora(rs.getString("editora"));
+                livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
+                livro.setAutor(rs.getString("autor"));
+                livro.setSituacao(rs.getString("situacao"));
+                //livro.setEmprestimo(rs.getBoolean("emprestimo"));
+
+                // livro.setIdLivro(rs.getInt("colCodigo"));
+                // livro.setTitulo(rs.getString("colNome"));
+                // livro.setnCopias(rs.getInt("colCopias"));
+                // livro.setEditora(rs.getString("colEditora"));
+                // livro.setAnoPublicacao(rs.getInt("colPublicacao"));
+                // livro.setAutor(rs.getString("colAutor"));
+                // livro.setEmprestimo(rs.getBoolean("colSituacao"));
+
+                lista.add(livro);
+            }
+
+            return lista;
+
+        } catch (SQLException erro) {
+            System.out.println("ERRO: " + erro.getMessage());
+            return null;
+        }
+
+    }public static List<Livro> listareditora(String titulo) {
+        List<Livro> lista = new ArrayList<Livro>();
+    
+        // A consulta foi modificada para filtrar pelo título (caso o parâmetro 'titulo' não seja nulo ou vazio)
+        String sql = "SELECT * FROM Livro";
+        
+    if (titulo != null) {
+        sql += " WHERE editora LIKE ?";
+        System.out.println("pesquisei");
+    }
+
+    try (Connection con = ConexaoMySQL.getConexao()) {
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        if (titulo != null) {
+            ps.setString(1, "%" + titulo + "%");
+        }
+    
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Livro livro = new Livro();
+
+                livro.setIdLivro(rs.getInt("idLivro"));
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setNCopias(rs.getInt("nCopias"));
+                livro.setEditora(rs.getString("editora"));
+                livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
+                livro.setAutor(rs.getString("autor"));
+                livro.setSituacao(rs.getString("situacao"));
+                //livro.setEmprestimo(rs.getBoolean("emprestimo"));
+
+                // livro.setIdLivro(rs.getInt("colCodigo"));
+                // livro.setTitulo(rs.getString("colNome"));
+                // livro.setnCopias(rs.getInt("colCopias"));
+                // livro.setEditora(rs.getString("colEditora"));
+                // livro.setAnoPublicacao(rs.getInt("colPublicacao"));
+                // livro.setAutor(rs.getString("colAutor"));
+                // livro.setEmprestimo(rs.getBoolean("colSituacao"));
+
+                lista.add(livro);
+            }
+
+            return lista;
+
+        } catch (SQLException erro) {
+            System.out.println("ERRO: " + erro.getMessage());
+            return null;
+        }
+
+    }
 }
