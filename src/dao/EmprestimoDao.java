@@ -43,6 +43,77 @@ public class EmprestimoDao {
         }
     }
 
+    // public static List<Emprestimo> listarEmprestimo() {
+    // List<Emprestimo> lista = new ArrayList<Emprestimo>();
+
+    // String sql = "SELECT * FROM emprestimo";
+    // sql += " WHERE situacao LIKE ? or situacao like ?";
+
+    // try (Connection con = ConexaoMySQL.getConexao()) {
+    // PreparedStatement ps = con.prepareStatement(sql);
+
+    // ps.setString(1, "%em dia%");
+    // ps.setString(2, "%atrasado%");
+
+    // ResultSet rs = ps.executeQuery();
+
+    // while (rs.next()) {
+    // Emprestimo emprestimo = new Emprestimo();
+
+    // emprestimo.setDtEmprestimo(rs.getDate("dtEmprestimo"));
+    // emprestimo.setDtDevolucao(rs.getDate("dtDevolucao"));
+    // emprestimo.setSituacao(rs.getString("situacao"));
+
+    // int idLivro = rs.getInt("idLivro");
+
+    // Livro livro = buscarLivro(idLivro);
+    // emprestimo.setLivro(livro);
+
+    // System.out.print(emprestimo.getLivro().getTitulo());
+
+    // lista.add(emprestimo);
+
+    // System.out.println("adicionei emprestimo");
+
+    // }
+
+    // return lista;
+
+    // } catch (SQLException erro) {
+    // System.out.println("ERRO: " + erro.getMessage());
+    // return null;
+    // }
+    // }
+
+    // private static Livro buscarLivro(int id) {
+    // String sql = "SELECT * FROM livro WHERE idLivro = ?";
+
+    // System.out.println("comecei procurar o livro");
+
+    // try (Connection con = ConexaoMySQL.getConexao()) {
+    // PreparedStatement ps = con.prepareStatement(sql);
+    // ps.setInt(1, id);
+    // ResultSet rs = ps.executeQuery();
+
+    // if (rs.next()) {
+    // Livro livro = new Livro();
+
+    // livro.setIdLivro(rs.getInt("idLivro"));
+    // livro.setTitulo(rs.getString("titulo"));
+    // livro.setAutor(rs.getString("autor"));
+
+    // System.out.println(livro.getTitulo());
+
+    // return livro;
+    // }
+    // } catch (SQLException e) {
+    // System.out.println("ERRO livro: " + e.getMessage());
+    // return null;
+    // }
+
+    // return null;
+    // }
+
     public static List<Emprestimo> listarEmprestimo() {
         List<Emprestimo> lista = new ArrayList<Emprestimo>();
 
@@ -52,13 +123,20 @@ public class EmprestimoDao {
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setString(1, "%ativo%");
-            ps.setString(2, "%em atraso%");
+            ps.setString(1, "%em dia%");
+            ps.setString(2, "%atrasado%");
+
+            System.out.println("executei");
+
 
             ResultSet rs = ps.executeQuery();
 
+            System.out.println("executei2");
+
             while (rs.next()) {
                 Emprestimo emprestimo = new Emprestimo();
+
+                System.out.println("executei3");
 
                 emprestimo.setIdEmprestimo(rs.getInt("idEmprestimo"));
                 emprestimo.setDtEmprestimo(rs.getDate("dtEmprestimo"));
@@ -74,6 +152,8 @@ public class EmprestimoDao {
                 usuario.setCpf(rs.getString("cpf"));
                 emprestimo.setPessoa(usuario);
 
+                System.out.println(emprestimo);
+
                 lista.add(emprestimo);
             }
 
@@ -85,23 +165,4 @@ public class EmprestimoDao {
         }
     }
 
-    // public static boolean renovar(Emprestimo emprestimo, Date dtDevolucao) {
-
-    // String sql;
-    // sql = "update Emprestimo";
-    // sql += "set dtDevolucao=? where idEmprestimo=?";
-
-    // try (Connection con = ConexaoMySQL.getConexao()) {
-
-    // PreparedStatement ps = con.prepareStatement(sql);
-
-    // ps.setDate(1, dtDevolucao);
-
-    // return (ps.executeUpdate() > 0);
-
-    // } catch (SQLException e) {
-    // System.out.println("ERRO AO renovar: " + e.getMessage());
-    // return false;
-    // }
-    // }
 }

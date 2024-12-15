@@ -29,7 +29,7 @@
           <TableColumn fx:id="codigo" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="titulo" prefWidth="75.0" text="titulo" />
             <TableColumn fx:id="autor" prefWidth="75.0" text="Autor" />
-            <TableColumn prefWidth="75.0" text="Editora" />
+            <TableColumn fx:id="editora" prefWidth="75.0" text="Editora" />
             <TableColumn fx:id="usuario" prefWidth="75.0" text="Usuario" />
             <TableColumn fx:id="emprestimo" prefWidth="75.0" text="Empréstimo" />
             <TableColumn fx:id="devolucao" prefWidth="75.0" text="Devoluçao" />

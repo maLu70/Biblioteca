@@ -102,9 +102,9 @@ public class telaInicialAdmController {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
-        paginaLivrosEmprestadosController controller = loader.getController();
+        // paginaLivrosEmprestadosController controller = loader.getController();
 
-        controller.initialize();
+        // controller.initialize();
 
         Stage stgAcervo = new Stage();
         stgAcervo.setTitle("Página Inicial");

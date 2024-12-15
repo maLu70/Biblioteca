@@ -25,7 +25,7 @@ public class paginaLivrosEmprestadosController {
     private Button btnVoltar;
 
     @FXML
-    private TableColumn<Livro, Integer> codigo;
+    private TableColumn<Emprestimo, Integer> codigo;
 
     @FXML
     private TableColumn<Emprestimo, Date> devolucao;
@@ -37,20 +37,13 @@ public class paginaLivrosEmprestadosController {
     private TableView<Emprestimo> tblEmprestimos;
 
     @FXML
-    private TableColumn<Livro, String> titulo;
+    private TableColumn<Emprestimo, String> titulo;
 
     @FXML
-    private TableColumn<Pessoa, Integer> usuario;
+    private TableColumn<Emprestimo, String> editora;
 
     @FXML
-    void devolucao(ActionEvent event) {
-
-    }
-
-    @FXML
-    void voltar(ActionEvent event) {
-
-    }
+    private TableColumn<Emprestimo, Integer> usuario;
 
     ObservableList<Emprestimo> obsLiv;
 
@@ -64,9 +57,21 @@ public class paginaLivrosEmprestadosController {
         emprestimo.setCellValueFactory(new PropertyValueFactory<>("dtEmprestimo"));
         titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         usuario.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        editora.setCellValueFactory(new PropertyValueFactory<>("editora"));
 
         obsLiv = FXCollections.observableList(EmprestimoDao.listarEmprestimo());
+        System.out.println(obsLiv.size());
 
         tblEmprestimos.setItems(obsLiv);
+    }
+
+    @FXML
+    void devolucao(ActionEvent event) {
+
+    }
+
+    @FXML
+    void voltar(ActionEvent event) {
+
     }
 }
