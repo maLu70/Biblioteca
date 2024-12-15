@@ -66,6 +66,23 @@ public class Emprestimo {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    } 
+    
+    public String getLivroTitulo() {
+        return livro != null ? livro.getTitulo() : "";
     }
 
+    public String getLivroAutor() {
+        return livro != null ? livro.getAutor() : "";
+    }
+
+    public String getLivroEditora() {
+        return livro != null ? livro.getEditora() : "";
+    }
+
+    public String getPessoaCpf() {
+        return pessoa != null ? pessoa.getCpf() : "";
+    }
 }
+
+

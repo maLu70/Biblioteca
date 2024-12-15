@@ -51,13 +51,13 @@ public class paginaLivrosEmprestadosController {
     void initialize() {
         btnVoltar.setBackground(tblEmprestimos.getBackground());
 
-        codigo.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
-        autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
+        codigo.setCellValueFactory(new PropertyValueFactory<>("idEmprestimo"));
+        autor.setCellValueFactory(new PropertyValueFactory<>("livroAutor"));
         devolucao.setCellValueFactory(new PropertyValueFactory<>("dtDevolucao"));
         emprestimo.setCellValueFactory(new PropertyValueFactory<>("dtEmprestimo"));
-        titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        usuario.setCellValueFactory(new PropertyValueFactory<>("cpf"));
-        editora.setCellValueFactory(new PropertyValueFactory<>("editora"));
+        titulo.setCellValueFactory(new PropertyValueFactory<>("livroTitulo"));
+        usuario.setCellValueFactory(new PropertyValueFactory<>("pessoaCpf"));
+        editora.setCellValueFactory(new PropertyValueFactory<>("livroEditora"));
 
         obsLiv = FXCollections.observableList(EmprestimoDao.listarEmprestimo());
         System.out.println(obsLiv.size());

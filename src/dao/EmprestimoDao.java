@@ -9,8 +9,7 @@ import java.util.List;
 
 import jdbc.ConexaoMySQL;
 import model.Emprestimo;
-import model.Livro;
-import model.Pessoa;
+
 
 public class EmprestimoDao {
 
@@ -20,7 +19,7 @@ public class EmprestimoDao {
         sql = "INSERT INTO Emprestimo (dtEmprestimo, dtDevolucao, idLivro, cpf, situacao) ";
         sql += "VALUES (?, ?, ?, ?, ?)";
 
-        sql += "update Livro set situacao=? where=?";
+        sql += "update Livro set situacao=? where idLivro=?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
 
@@ -117,42 +116,24 @@ public class EmprestimoDao {
     public static List<Emprestimo> listarEmprestimo() {
         List<Emprestimo> lista = new ArrayList<Emprestimo>();
 
-        String sql = "SELECT * FROM emprestimo";
-        sql += " WHERE situacao LIKE ? or situacao like ?";
+        String sql = "SELECT * FROM emprestimo WHERE situacao LIKE ? OR situacao LIKE ?";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
             PreparedStatement ps = con.prepareStatement(sql);
-
             ps.setString(1, "%em dia%");
             ps.setString(2, "%atrasado%");
 
-            System.out.println("executei");
-
-
             ResultSet rs = ps.executeQuery();
-
-            System.out.println("executei2");
 
             while (rs.next()) {
                 Emprestimo emprestimo = new Emprestimo();
-
-                System.out.println("executei3");
 
                 emprestimo.setIdEmprestimo(rs.getInt("idEmprestimo"));
                 emprestimo.setDtEmprestimo(rs.getDate("dtEmprestimo"));
                 emprestimo.setDtDevolucao(rs.getDate("dtDevolucao"));
                 emprestimo.setSituacao(rs.getString("situacao"));
-
-                Livro livro = new Livro();
-                livro.setIdLivro(rs.getInt("idLivro"));
-                livro.setTitulo(rs.getString("titulo"));
-                emprestimo.setLivro(livro);
-
-                Pessoa usuario = new Pessoa();
-                usuario.setCpf(rs.getString("cpf"));
-                emprestimo.setPessoa(usuario);
-
-                System.out.println(emprestimo);
+                emprestimo.setLivro(LivroDao.buscarLivroPorId(rs.getInt("idLivro")));
+                emprestimo.setPessoa(PessoaDao.buscarPessoa(rs.getString("cpf")));
 
                 lista.add(emprestimo);
             }
@@ -160,7 +141,7 @@ public class EmprestimoDao {
             return lista;
 
         } catch (SQLException erro) {
-            System.out.println("ERRO: " + erro.getMessage());
+            System.out.println("Erro: " + erro.getMessage());
             return null;
         }
     }

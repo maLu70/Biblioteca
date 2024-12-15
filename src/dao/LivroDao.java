@@ -266,4 +266,39 @@ public class LivroDao {
             return false;
         }
     }
+    public static Livro buscarLivroPorId(int id) {
+        Connection conexao = ConexaoMySQL.getConexao();
+        if (conexao == null) {
+            return null;
+        }
+
+        Livro livro = null;
+        String query = "SELECT * FROM livro WHERE idLivro = ?"; 
+
+        try (PreparedStatement stmt = conexao.prepareStatement(query)) {
+            stmt.setInt(1, id);  
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                livro = new Livro(
+                    rs.getInt("anoPublicacao"),
+                    rs.getInt("nCopias"),
+                    rs.getString("titulo"),
+                    rs.getString("editora"),
+                    rs.getString("autor"),
+                    rs.getString("situacao")
+                );
+                livro.setIdLivro(rs.getInt("idLivro"));
+                
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar o livro: " + e.getMessage());
+        }
+
+        return livro; 
+    }
+
+    
 }
