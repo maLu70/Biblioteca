@@ -43,6 +43,9 @@ public class PaginaInicialController {
     private Button btnEntrar;
 
     @FXML
+    private Label lblnomeusuario;
+
+    @FXML
     private Button btnPesquisa;
 
     @FXML
@@ -105,8 +108,15 @@ public class PaginaInicialController {
 
     }
 
+
     @FXML
     void initialize() {
+
+        if (PaginaLoginController.getLogado()!=null) {
+            lblnomeusuario.setText("Bem vindo "+PaginaLoginController.getLogado().getNome()+"!");
+            btnEntrar.setVisible(false);
+            lblBemVindo.setVisible(false);
+        }
         comboBox.getItems().addAll("Autor", "Editora", "Título");
         btnEntrar.setBackground(lblBemVindo.getBackground());
     }

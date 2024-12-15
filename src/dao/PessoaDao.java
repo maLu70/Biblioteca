@@ -95,6 +95,38 @@ public class PessoaDao {
             return false;
         }
     }
+    
+
+    public static Pessoa buscarPessoa(String cpf) {
+        String sql = "SELECT * FROM pessoa WHERE cpf = ?";
+        
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, cpf);
+    
+            ResultSet rs = ps.executeQuery();
+    
+            if (rs.next()) {
+                Pessoa pessoa = new Pessoa();
+                pessoa.setCpf(rs.getString("cpf"));
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setTelefone(rs.getInt("telefone"));
+                pessoa.setEmail(rs.getString("email"));
+                pessoa.setSenha(rs.getString("senha"));
+                pessoa.setAdm(rs.getBoolean("adm"));
+                pessoa.setDtNascimento(rs.getObject("dtNascimento", LocalDate.class));
+    
+                return pessoa;
+            } else {
+                System.out.println("Usuário não encontrado ou senha incorreta.");
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("ERRO AO BUSCAR USUÁRIO: " + e.getMessage());
+            return null;
+        }
+    }
+    
 
     // public static boolean deletarUsuario(Pessoa usuario) {
     // String sql;

@@ -34,5 +34,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="lblnomeusuario" contentDisplay="CENTER" layoutX="125.0" layoutY="77.0" prefHeight="17.0" prefWidth="348.0" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
