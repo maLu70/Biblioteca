@@ -141,6 +141,7 @@ public class paginaCRUDController {
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
         URL url = getClass().getResource("/view/telaEmprestimo.fxml");
 
+        
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
@@ -153,7 +154,7 @@ public class paginaCRUDController {
         currentStage.close();
 
         setDeleteeedit(3);
-
+        
     }
 
     @FXML
@@ -164,12 +165,12 @@ public class paginaCRUDController {
             LivroDao.delete(livroselecionado);
         } 
         
-        // else {
-        //     Alert alert = new Alert(AlertType.INFORMATION);
-        //     alert.setHeaderText("Erro ao deletar");
-        //     alert.setContentText("Selcione um livro");
-        //     alert.show();
-        // }
+         else {
+             Alert alert = new Alert(AlertType.INFORMATION);
+             alert.setHeaderText("Erro ao deletar");
+             alert.setContentText("Selcione um livro");
+             alert.show();
+         }
 
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("autor"));
@@ -179,7 +180,7 @@ public class paginaCRUDController {
         colpub.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
         colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); 
 
-        obsLiv = FXCollections.observableList(LivroDao.listar(null));
+        obsLiv = FXCollections.observableList(LivroDao.listartudo(""));
 
         tblAcervo.setItems(obsLiv);
 
@@ -207,6 +208,7 @@ public class paginaCRUDController {
     @FXML
     void initialize(String titulo) {
         btnVoltar.setBackground(lblResultado.getBackground());
+
 
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("autor"));

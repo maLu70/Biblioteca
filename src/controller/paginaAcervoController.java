@@ -20,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Livro;
 
+
 public class paginaAcervoController {
 
     @FXML
@@ -55,7 +56,8 @@ public class paginaAcervoController {
     ObservableList<Livro> obsLiv;
 
     @FXML
-    void initialize(String texto) {
+    void initialize() {
+        lblLabel.setText("Resultados para '" + PaginaInicialController.getPesquisa()+"'");
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         colCopias.setCellValueFactory(new PropertyValueFactory<>("nCopias"));
@@ -66,26 +68,26 @@ public class paginaAcervoController {
 
         switch (PaginaInicialController.getComboboxvalue()) {
             case 0:
-                obsLiv = FXCollections.observableList(LivroDao.listarporautr(texto));
+                obsLiv = FXCollections.observableList(LivroDao.listarporautr(PaginaInicialController.getPesquisa()));
                 break;
 
             case 1:
-                obsLiv = FXCollections.observableList(LivroDao.listareditora(texto));
+                obsLiv = FXCollections.observableList(LivroDao.listareditora(PaginaInicialController.getPesquisa()));
                 break;
 
             case 2:
-                obsLiv = FXCollections.observableList(LivroDao.listar(texto));
+                obsLiv = FXCollections.observableList(LivroDao.listar(PaginaInicialController.getPesquisa()));
                 break;
 
             case 5:
-                obsLiv = FXCollections.observableList(LivroDao.listar(""));
+                obsLiv = FXCollections.observableList(LivroDao.listartudo(PaginaInicialController.getPesquisa()));
 
         }
 
-        lblLabel.setText("Resultados para" + texto);
+       
         btnVoltarAcervo.setBackground(lblLabel.getBackground());
 
-        System.out.println("pesquisa texto = " + texto);
+        System.out.println("pesquisa texto = " + PaginaInicialController.getPesquisa());
 
         tblAcervo.setItems(obsLiv);
     }

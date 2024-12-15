@@ -204,6 +204,48 @@ public class LivroDao {
             return null;
         }
     }
+    public static List<Livro> listartudo(String titulo) {
+        List<Livro> lista = new ArrayList<Livro>();
+
+        String sql = "SELECT * FROM Livro";
+
+        if (titulo != null) {
+            sql += " WHERE editora LIKE ? or titulo LIKE ? or autor LIKE ?";
+            System.out.println("pesquisei");
+        }
+
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            if (titulo != null) {
+                ps.setString(1, "%" + titulo + "%");
+                ps.setString(2, "%" + titulo + "%");
+                ps.setString(3, "%" + titulo + "%");
+            }
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Livro livro = new Livro();
+
+                livro.setIdLivro(rs.getInt("idLivro"));
+                livro.setTitulo(rs.getString("titulo"));
+                livro.setNCopias(rs.getInt("nCopias"));
+                livro.setEditora(rs.getString("editora"));
+                livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
+                livro.setAutor(rs.getString("autor"));
+                livro.setSituacao(rs.getString("situacao"));
+            
+                lista.add(livro);
+            }
+
+            return lista;
+
+        } catch (SQLException erro) {
+            System.out.println("ERRO: " + erro.getMessage());
+            return null;
+        }
+    }
 
     public static boolean devolucao(Livro livro) {
         String sql;

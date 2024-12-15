@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -24,7 +23,6 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtLivro" layoutX="159.0" layoutY="241.0" prefHeight="34.0" prefWidth="302.0" promptText="Livro" />
       <Label layoutX="159.0" layoutY="155.0" text="Usuário" />
       <Label layoutX="159.0" layoutY="224.0" text="ID Livro" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#88478d" height="42.0" layoutX="232.0" layoutY="93.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
@@ -36,5 +34,6 @@
       <Label fx:id="lblErroCPF" layoutX="159.0" layoutY="181.0" text="Campo Incorreto" textFill="RED" visible="false" />
       <Label fx:id="lblErroSenha" layoutX="159.0" layoutY="260.0" text="Campo Incorreto" textFill="RED" visible="false" />
       <Button fx:id="btnVoltar" layoutX="31.0" layoutY="19.0" mnemonicParsing="false" onAction="#voltar" text="↤ Voltar" textFill="WHITE" />
+      <TextField fx:id="txtLivro" layoutX="159.0" layoutY="243.0" prefHeight="34.0" prefWidth="302.0" promptText="ID Livro" />
    </children>
 </AnchorPane>

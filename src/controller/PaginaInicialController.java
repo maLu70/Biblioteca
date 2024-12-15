@@ -21,6 +21,16 @@ public class PaginaInicialController {
 
     private static int comboboxvalue;
 
+    private static String pesquisa; 
+
+    public static String getPesquisa() {
+        return pesquisa;
+    }
+
+    public static void setPesquisa(String pesquisa) {
+        PaginaInicialController.pesquisa = pesquisa;
+    }
+
     public static int getComboboxvalue() {
         return comboboxvalue;
     }
@@ -47,8 +57,8 @@ public class PaginaInicialController {
     @FXML
     void PesquisarAcervo(ActionEvent event) throws IOException {
 
-        String pesquisa = txtPesquisa.getText();
-        System.out.println("pesquis = " + pesquisa + "  index =" + comboboxvalue);
+        setPesquisa(txtPesquisa.getText());
+        System.out.println("pesquis = " + getPesquisa() + "  index =" + comboboxvalue);
         comboboxvalue = comboBox.getSelectionModel().getSelectedIndex();
 
         if (comboBox.getValue() == null) {
@@ -63,19 +73,17 @@ public class PaginaInicialController {
         } else {
 
             URL url = getClass().getResource("/view/paginaAcervo.fxml");
+
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 
-            paginaAcervoController controller = loader.getController();
-
-            controller.initialize(pesquisa);
-
             Stage stgAcervo = new Stage();
-            stgAcervo.setTitle("Página Inicial");
+            stgAcervo.setTitle("Acervo");
             stgAcervo.setScene(new Scene(root));
             stgAcervo.show();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
         }
     }
 
