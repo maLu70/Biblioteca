@@ -67,6 +67,8 @@ public class telaInicialAdmController {
 
             paginaCRUDController controller = loader.getController();
 
+            controller.lblResultado.setText("Resultados para '" + txtPesquisa.getText() + "'");
+
             controller.initialize(pesquisa);
 
             Stage stgAcervo = new Stage();
@@ -94,6 +96,9 @@ public class telaInicialAdmController {
 
         controller.btnAdicaoEdicao.setText("Adicionar");
         controller.lblAdicaoEdicao.setText("Adicionar Livro");
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML
@@ -102,14 +107,13 @@ public class telaInicialAdmController {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
 
-        // paginaLivrosEmprestadosController controller = loader.getController();
-
-        // controller.initialize();
-
         Stage stgAcervo = new Stage();
         stgAcervo.setTitle("Página Inicial");
         stgAcervo.setScene(new Scene(root));
         stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 
     @FXML

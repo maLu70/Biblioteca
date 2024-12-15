@@ -21,7 +21,7 @@ import model.Pessoa;
 
 public class PaginaLoginController {
 
-    private static Pessoa logado; 
+    private static Pessoa logado;
 
     public static Pessoa getLogado() {
         return logado;
@@ -36,8 +36,6 @@ public class PaginaLoginController {
 
     @FXML
     private Button btnSemConta;
-
-    
 
     @FXML
     private Label lblErroCPF;
@@ -58,7 +56,7 @@ public class PaginaLoginController {
         cpf = txtCPF.getText();
         senha = txtSenha.getText();
 
-        if(PessoaDao.verificarLogin(cpf, senha) == false) {
+        if (PessoaDao.verificarLogin(cpf, senha) == false) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Erro no Login");
             alert.setContentText("Preencha totas as informações corretamente");
@@ -72,32 +70,31 @@ public class PaginaLoginController {
 
                 FXMLLoader loader = new FXMLLoader(url);
                 Parent root = loader.load();
-    
+
                 Stage stgAcervo = new Stage();
                 stgAcervo.setTitle("pagina inicial");
                 stgAcervo.setScene(new Scene(root));
                 stgAcervo.show();
-    
+
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.close();
 
-            }else if(getLogado().isAdm()==false){
-            URL url = getClass().getResource("/view/paginaInicial.fxml");
+            } else if (getLogado().isAdm() == false) {
+                URL url = getClass().getResource("/view/paginaInicial.fxml");
 
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+                FXMLLoader loader = new FXMLLoader(url);
+                Parent root = loader.load();
 
-            Stage stgAcervo = new Stage();
-            stgAcervo.setTitle("pagina inicial");
-            stgAcervo.setScene(new Scene(root));
-            stgAcervo.show();
-        
+                Stage stgAcervo = new Stage();
+                stgAcervo.setTitle("pagina inicial");
+                stgAcervo.setScene(new Scene(root));
+                stgAcervo.show();
 
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.close();
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+            }
         }
-        }
-        }
+    }
 
     @FXML
     void criarConta(ActionEvent event) throws IOException {

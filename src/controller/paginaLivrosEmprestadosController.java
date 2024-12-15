@@ -1,19 +1,39 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
 
 import dao.EmprestimoDao;
+import dao.LivroDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.*;
 
 public class paginaLivrosEmprestadosController {
+
+    public static Livro livroaux;
+
+    public static Livro getLivro() {
+        return livroaux;
+    }
+
+    public static void setLivro(Livro livroaux) {
+        paginaLivrosEmprestadosController.livroaux = livroaux;
+    }
 
     @FXML
     private TableColumn<Livro, String> autor;
@@ -57,7 +77,7 @@ public class paginaLivrosEmprestadosController {
         emprestimo.setCellValueFactory(new PropertyValueFactory<>("dtEmprestimo"));
         titulo.setCellValueFactory(new PropertyValueFactory<>("livroTitulo"));
         usuario.setCellValueFactory(new PropertyValueFactory<>("pessoaCpf"));
-        editora.setCellValueFactory(new PropertyValueFactory<>("livroEditora"));
+        editora.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 
         obsLiv = FXCollections.observableList(EmprestimoDao.listarEmprestimo());
         System.out.println(obsLiv.size());
@@ -68,10 +88,25 @@ public class paginaLivrosEmprestadosController {
     @FXML
     void devolucao(ActionEvent event) {
 
+        livroaux = tblEmprestimos.getSelectionModel().getSelectedItem().getLivro();
+        LivroDao.devolucao(livroaux);
     }
 
+
     @FXML
-    void voltar(ActionEvent event) {
+    void voltar(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("/view/telaInicialAdm.fxml");
+
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("pagina inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
     }
 }

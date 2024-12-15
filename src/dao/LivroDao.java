@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import jdbc.ConexaoMySQL;
 import model.Livro;
 
@@ -77,6 +79,11 @@ public class LivroDao {
             return (ps.executeUpdate() > 0);
 
         } catch (SQLException e) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Erro ao deletar");
+            alert.setContentText("Impossivel deletar Livro em emprestimo");
+            alert.show();
+
             System.out.println("ERRO AO deletar: " + e.getMessage());
             return false;
         }
@@ -193,7 +200,7 @@ public class LivroDao {
                 livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
                 livro.setAutor(rs.getString("autor"));
                 livro.setSituacao(rs.getString("situacao"));
-            
+
                 lista.add(livro);
             }
 
@@ -204,6 +211,7 @@ public class LivroDao {
             return null;
         }
     }
+
     public static List<Livro> listartudo(String titulo) {
         List<Livro> lista = new ArrayList<Livro>();
 
@@ -235,7 +243,7 @@ public class LivroDao {
                 livro.setAnoPublicacao(rs.getInt("anoPublicacao"));
                 livro.setAutor(rs.getString("autor"));
                 livro.setSituacao(rs.getString("situacao"));
-            
+
                 lista.add(livro);
             }
 
@@ -249,23 +257,36 @@ public class LivroDao {
 
     public static boolean devolucao(Livro livro) {
         String sql;
-        sql = "update Livro ";
-        sql += "set situacao=? WHERE idLivro=?";
 
-        try (Connection con = ConexaoMySQL.getConexao()) {
+        if (livro.getSituacao().equals("livre")) {
 
-            PreparedStatement ps = con.prepareStatement(sql);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Erro na devolucao");
+            alert.setContentText("O livro nao está em emprestimo");
+            alert.show();
 
-            ps.setString(1, "livre");
-            ps.setInt(2, livro.getIdLivro());
-
-            return (ps.executeUpdate() > 0);
-
-        } catch (SQLException e) {
-            System.out.println("ERRO AO devolver: " + e.getMessage());
             return false;
+        
+        } else {
+            sql = "update Livro ";
+            sql += "set situacao=? WHERE idLivro=?";
+
+            try (Connection con = ConexaoMySQL.getConexao()) {
+
+                PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setString(1, "livre");
+                ps.setInt(2, livro.getIdLivro());
+
+                return (ps.executeUpdate() > 0);
+
+            } catch (SQLException e) {
+                System.out.println("ERRO AO devolver: " + e.getMessage());
+                return false;
+            }
         }
     }
+
     public static Livro buscarLivroPorId(int id) {
         Connection conexao = ConexaoMySQL.getConexao();
         if (conexao == null) {
@@ -273,32 +294,30 @@ public class LivroDao {
         }
 
         Livro livro = null;
-        String query = "SELECT * FROM livro WHERE idLivro = ?"; 
+        String query = "SELECT * FROM livro WHERE idLivro = ?";
 
         try (PreparedStatement stmt = conexao.prepareStatement(query)) {
-            stmt.setInt(1, id);  
+            stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
 
                 livro = new Livro(
-                    rs.getInt("anoPublicacao"),
-                    rs.getInt("nCopias"),
-                    rs.getString("titulo"),
-                    rs.getString("editora"),
-                    rs.getString("autor"),
-                    rs.getString("situacao")
-                );
+                        rs.getInt("anoPublicacao"),
+                        rs.getInt("nCopias"),
+                        rs.getString("titulo"),
+                        rs.getString("editora"),
+                        rs.getString("autor"),
+                        rs.getString("situacao"));
                 livro.setIdLivro(rs.getInt("idLivro"));
-                
+
             }
         } catch (SQLException e) {
             System.out.println("Erro ao buscar o livro: " + e.getMessage());
         }
 
-        return livro; 
+        return livro;
     }
 
-    
 }

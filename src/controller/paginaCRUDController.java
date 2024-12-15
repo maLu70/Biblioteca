@@ -85,8 +85,7 @@ public class paginaCRUDController {
     @FXML
     private Button btnVoltar;
 
-    @FXML
-    private Label lblResultado;
+    @FXML Label lblResultado;
 
     @FXML
     private TableView<Livro> tblAcervo;
@@ -133,28 +132,22 @@ public class paginaCRUDController {
         currentStage.close();
 
         setDeleteeedit(4);
-
     }
 
     @FXML
     void registrarDevolucao(ActionEvent event) throws IOException {
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
-        URL url = getClass().getResource("/view/telaEmprestimo.fxml");
-
         
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-
-        Stage stgAcervo = new Stage();
-        stgAcervo.setTitle("Página de Devolução");
-        stgAcervo.setScene(new Scene(root));
-        stgAcervo.show();
-
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentStage.close();
+        if(livroaux.getSituacao().equals("livre")) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Erro ao devolver");
+            alert.setContentText("O livro não está emprestado");
+            alert.show();
+        } else {
+            LivroDao.devolucao(livroaux);
+        }
 
         setDeleteeedit(3);
-        
     }
 
     @FXML
@@ -183,7 +176,6 @@ public class paginaCRUDController {
         obsLiv = FXCollections.observableList(LivroDao.listartudo(""));
 
         tblAcervo.setItems(obsLiv);
-
     }
 
     @FXML

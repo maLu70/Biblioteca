@@ -23,12 +23,6 @@ public class telaEmprestimoController {
     private Button btnVoltar;
 
     @FXML
-    private Label lblErroCPF;
-
-    @FXML
-    private Label lblErroSenha;
-
-    @FXML
     private TextField txtCPF;
 
     @FXML
@@ -38,21 +32,22 @@ public class telaEmprestimoController {
     private Label lblemprestimodevolucao;
 
     @FXML
-    void Entrar(ActionEvent event) {
-
-    }
-
-    @FXML
     void voltar(ActionEvent event) throws IOException {
-         URL url = getClass().getResource("/view/paginaCRUD.fxml");
+        URL url;
 
-            FXMLLoader loader = new FXMLLoader(url);
-            Parent root = loader.load();
+        if (PaginaLoginController.getLogado().isAdm()) {
+            url = getClass().getResource("/view/telaInicialAdm.fxml");
+        } else {
+            url = getClass().getResource("/view/paginaCRUD.fxml");
+        }
 
-            Stage stgAcervo = new Stage();
-            stgAcervo.setTitle("pagina CRUD");
-            stgAcervo.setScene(new Scene(root));
-            stgAcervo.show();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("pagina CRUD");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
@@ -62,22 +57,19 @@ public class telaEmprestimoController {
     void initialize() {
         btnVoltar.setBackground(txtCPF.getBackground());
         if (paginaCRUDController.getLivro() != null) {
-        txtLivro.setText(Integer.toString(paginaCRUDController.getLivro().getIdLivro()));
+            txtLivro.setText(Integer.toString(paginaCRUDController.getLivro().getIdLivro()));
         }
         if (paginaCRUDController.getDeleteeedit() == 3) {
             lblemprestimodevolucao.setText("Empréstimo");
             btnEmprestar.setText("Realizar emprestimo");
-            
-            
-        }else if (paginaCRUDController.getDeleteeedit() == 4) {
+
+        } else if (paginaCRUDController.getDeleteeedit() == 4) {
             lblemprestimodevolucao.setText("Devolção");
             btnEmprestar.setText("Realizar devolução");
+
             if (paginaCRUDController.getLivro() != null) {
                 txtLivro.setText(Integer.toString(paginaCRUDController.getLivro().getIdLivro()));
             }
         }
     }
-
-    
-
 }
