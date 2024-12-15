@@ -15,13 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class PaginaInicialController {
 
-
     private static int comboboxvalue;
+
     public static int getComboboxvalue() {
         return comboboxvalue;
     }
@@ -49,40 +48,40 @@ public class PaginaInicialController {
     void PesquisarAcervo(ActionEvent event) throws IOException {
 
         String pesquisa = txtPesquisa.getText();
-        System.out.println("pesquis = " + pesquisa + "  index ="+comboboxvalue);
+        System.out.println("pesquis = " + pesquisa + "  index =" + comboboxvalue);
         comboboxvalue = comboBox.getSelectionModel().getSelectedIndex();
-        
+
         if (comboBox.getValue() == null) {
-            comboboxvalue=5;
+            comboboxvalue = 5;
         }
-        if (comboboxvalue!= 0 && comboboxvalue!=1 && comboboxvalue!=2 && comboboxvalue!=5) {
+        if (comboboxvalue != 0 && comboboxvalue != 1 && comboboxvalue != 2 && comboboxvalue != 5) {
             Alert alerta = new Alert(AlertType.WARNING);
             alerta.setHeaderText("Erro ao pesquisar livro!");
             alerta.setContentText("selecione termo para pesquisa!");
             alerta.show();
 
-        }else{
+        } else {
 
-        URL url = getClass().getResource("/view/paginaAcervo.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
+            URL url = getClass().getResource("/view/paginaAcervo.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
-        paginaAcervoController controller = loader.getController();
+            paginaAcervoController controller = loader.getController();
 
-        controller.initialize(pesquisa);;
+            controller.initialize(pesquisa);
 
-        Stage stgAcervo = new Stage();
-        stgAcervo.setTitle("Página Inicial");
-        stgAcervo.setScene(new Scene(root));
-        stgAcervo.show();
-         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentStage.close();
-    }}
+            Stage stgAcervo = new Stage();
+            stgAcervo.setTitle("Página Inicial");
+            stgAcervo.setScene(new Scene(root));
+            stgAcervo.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        }
+    }
 
     @FXML
     void clickLogin(ActionEvent event) throws IOException {
 
-        
         URL url = getClass().getResource("/view/paginaLogin.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
@@ -96,12 +95,11 @@ public class PaginaInicialController {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.close();
 
-
     }
 
     @FXML
-    void initialize(){
+    void initialize() {
         comboBox.getItems().addAll("Autor", "Editora", "Título");
-        btnEntrar.setBackground(lblBemVindo.getBackground());   
+        btnEntrar.setBackground(lblBemVindo.getBackground());
     }
 }

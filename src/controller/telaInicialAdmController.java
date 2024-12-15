@@ -6,14 +6,27 @@ import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class telaInicialAdmController {
+
+    private static int comboboxvalue;
+
+    public static int getComboboxvalue() {
+        return comboboxvalue;
+    }
+
+    public static void setComboboxvalue(int comboboxvalue) {
+        telaInicialAdmController.comboboxvalue = comboboxvalue;
+    }
 
     @FXML
     private Button btnAdicionar;
@@ -22,29 +35,47 @@ public class telaInicialAdmController {
     private Button btnPesquisa;
 
     @FXML
-    private ComboBox<?> comboBox;
+    private ComboBox<String> comboBox;
 
     @FXML
     private TextField txtPesquisa;
 
     @FXML
+    private Button btnEmprestimo;
+
+    @FXML
     void PesquisarAcervo(ActionEvent event) throws IOException {
 
         String pesquisa = txtPesquisa.getText();
-        System.out.println("pesquis = " + pesquisa);
+        System.out.println("pesquis = " + pesquisa + "  index =" + comboboxvalue);
+        comboboxvalue = comboBox.getSelectionModel().getSelectedIndex();
 
-        URL url = getClass().getResource("/view/paginaAcervo.fxml");
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
+        if (comboBox.getValue() == null) {
+            comboboxvalue = 5;
+        }
+        if (comboboxvalue != 0 && comboboxvalue != 1 && comboboxvalue != 2 && comboboxvalue != 5) {
+            Alert alerta = new Alert(AlertType.WARNING);
+            alerta.setHeaderText("Erro ao pesquisar livro!");
+            alerta.setContentText("selecione termo para pesquisa!");
+            alerta.show();
 
-        paginaAcervoController controller = loader.getController();
+        } else {
 
-        controller.initialize(pesquisa);;
+            URL url = getClass().getResource("/view/paginaCRUD.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
-        Stage stgAcervo = new Stage();
-        stgAcervo.setTitle("Página Inicial");
-        stgAcervo.setScene(new Scene(root));
-        stgAcervo.show();
+            paginaCRUDController controller = loader.getController();
+
+            controller.initialize(pesquisa);
+
+            Stage stgAcervo = new Stage();
+            stgAcervo.setTitle("Página Inicial");
+            stgAcervo.setScene(new Scene(root));
+            stgAcervo.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
+        }
     }
 
     @FXML
@@ -63,7 +94,27 @@ public class telaInicialAdmController {
 
         controller.btnAdicaoEdicao.setText("Adicionar");
         controller.lblAdicaoEdicao.setText("Adicionar Livro");
+    }
 
+    @FXML
+    void verEmprestimo(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("/view/telaLivrosEmprestados.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        paginaLivrosEmprestadosController controller = loader.getController();
+
+        controller.initialize();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página Inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+    }
+
+    @FXML
+    void initialize() {
+        comboBox.getItems().addAll("Autor", "Editora", "Título");
     }
 
 }

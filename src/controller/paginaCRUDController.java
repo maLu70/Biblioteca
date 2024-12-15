@@ -25,7 +25,7 @@ import model.Livro;
 public class paginaCRUDController {
 
     public static Livro livroaux;
-    
+
     public static Livro getLivro() {
         return livroaux;
     }
@@ -95,13 +95,12 @@ public class paginaCRUDController {
     void editarLivro(ActionEvent event) throws IOException {
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
 
-        if (livroaux==null) {
+        if (livroaux == null) {
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setHeaderText("Erro ao atualizar livro");
             alerta.setContentText("selecione um livro para atualizar");
             alerta.show();
-        }
-        else{
+        } else {
             setDeleteeedit(1);
             URL url = getClass().getResource("/view/paginaEdicaoAdicao.fxml");
             FXMLLoader loader = new FXMLLoader(url);
@@ -112,9 +111,8 @@ public class paginaCRUDController {
             stgAcervo.show();
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.close();
-            
-            
-    }
+
+        }
 
     }
 
@@ -132,7 +130,7 @@ public class paginaCRUDController {
         stgAcervo.show();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    currentStage.close();
+        currentStage.close();
 
         setDeleteeedit(4);
 
@@ -152,7 +150,7 @@ public class paginaCRUDController {
         stgAcervo.show();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    currentStage.close();
+        currentStage.close();
 
         setDeleteeedit(3);
 
@@ -164,7 +162,14 @@ public class paginaCRUDController {
 
         if (livroselecionado != null) {
             LivroDao.delete(livroselecionado);
-        }
+        } 
+        
+        // else {
+        //     Alert alert = new Alert(AlertType.INFORMATION);
+        //     alert.setHeaderText("Erro ao deletar");
+        //     alert.setContentText("Selcione um livro");
+        //     alert.show();
+        // }
 
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("autor"));
@@ -172,10 +177,7 @@ public class paginaCRUDController {
         coleditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colpub.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); // colSituacao.setCellValueFactory(new
-                                                                                 // PropertyValueFactory<>("emprestimo"));
-
-        // obsLiv = FXCollections.observableArrayList();
+        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); 
 
         obsLiv = FXCollections.observableList(LivroDao.listar(null));
 
@@ -203,7 +205,7 @@ public class paginaCRUDController {
     ObservableList<Livro> obsLiv;
 
     @FXML
-    void initialize() {
+    void initialize(String titulo) {
         btnVoltar.setBackground(lblResultado.getBackground());
 
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
@@ -212,12 +214,9 @@ public class paginaCRUDController {
         coleditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colpub.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); // colSituacao.setCellValueFactory(new
-                                                                                 // PropertyValueFactory<>("emprestimo"));
+        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); 
 
-        // obsLiv = FXCollections.observableArrayList();
-
-        obsLiv = FXCollections.observableList(LivroDao.listar(null));
+        obsLiv = FXCollections.observableList(LivroDao.listar(titulo));
 
         tblAcervo.setItems(obsLiv);
 

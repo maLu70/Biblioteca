@@ -7,6 +7,7 @@ public class Emprestimo {
     int idEmprestimo;
     Livro livro;
     Pessoa pessoa;
+    String situacao;
 
     public Emprestimo(Date dtEmprestimo, Date dtDevolucao, int idEmprestimo, Livro livro, Pessoa pessoa) {
         this.dtEmprestimo = dtEmprestimo;
@@ -17,6 +18,14 @@ public class Emprestimo {
     }
 
     public Emprestimo() {
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
     }
 
     public Date getDtEmprestimo() {

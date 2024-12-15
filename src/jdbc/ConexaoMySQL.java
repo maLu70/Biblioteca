@@ -11,7 +11,7 @@ public class ConexaoMySQL {
     private static String host     = "localhost";
     private static String database = "Biblioteca";
     private static String login    = "root";
-    private static String senha    = "nitaen123";
+    private static String senha    = "";
 
     public static Connection getConexao() {
 

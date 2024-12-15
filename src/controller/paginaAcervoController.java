@@ -19,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Livro;
-import controller.PaginaInicialController;
 
 public class paginaAcervoController {
 
@@ -64,31 +63,28 @@ public class paginaAcervoController {
         colNome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colPublicacao.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
         colSituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
-        
+
         switch (PaginaInicialController.getComboboxvalue()) {
             case 0:
-            obsLiv = FXCollections.observableList(LivroDao.listarporautr(texto));
+                obsLiv = FXCollections.observableList(LivroDao.listarporautr(texto));
                 break;
-        
+
             case 1:
-            obsLiv = FXCollections.observableList(LivroDao.listareditora(texto));
+                obsLiv = FXCollections.observableList(LivroDao.listareditora(texto));
                 break;
 
             case 2:
                 obsLiv = FXCollections.observableList(LivroDao.listar(texto));
-            break;
+                break;
 
             case 5:
-            obsLiv = FXCollections.observableList(LivroDao.listar(""));
+                obsLiv = FXCollections.observableList(LivroDao.listar(""));
 
         }
-        
-        lblLabel.setText("Resultados para"+texto);
+
+        lblLabel.setText("Resultados para" + texto);
         btnVoltarAcervo.setBackground(lblLabel.getBackground());
 
-        
-
-        
         System.out.println("pesquisa texto = " + texto);
 
         tblAcervo.setItems(obsLiv);

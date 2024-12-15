@@ -54,28 +54,26 @@ public class novoUsuarioController {
     void CriarUsuario(ActionEvent event) throws IOException {
 
         if (VerificarCPF(txtCPF.getText()) && dpNasci.getValue() != null && txtEmail.getText().contains("@")
-                && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null && txtCPF.getText().length() == 11) {
+                && txtEmail.getText().length() > 10 && txtNome.getText() != null && txtSenha.getText() != null
+                && txtCPF.getText().length() == 11) {
 
             Pessoa usuario = new Pessoa(txtCPF.getText(), Integer.parseInt(txtTel.getText()),
                     txtNome.getText(), txtEmail.getText(), txtSenha.getText(), false, dpNasci.getValue());
 
             PessoaDao.cadastrarUsuario(usuario);
 
+            URL url = getClass().getResource("/view/paginaLogin.fxml");
 
-             
-        URL url = getClass().getResource("/view/paginaLogin.fxml");
+            FXMLLoader loader = new FXMLLoader(url);
 
-        FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
 
-        Parent root = loader.load();
-
-        Stage stgAcervo = new Stage();
-        stgAcervo.setTitle("Pagina de Login");
-        stgAcervo.setScene(new Scene(root));
-        stgAcervo.show();
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentStage.close();
-
+            Stage stgAcervo = new Stage();
+            stgAcervo.setTitle("Pagina de Login");
+            stgAcervo.setScene(new Scene(root));
+            stgAcervo.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.close();
 
             System.out.println("usuario adicionado");
         } else {
@@ -84,12 +82,10 @@ public class novoUsuarioController {
             alert.setContentText("Preencha totas as informações corretamente");
             alert.show();
         }
-
     }
 
     public Boolean VerificarCPF(String cpf) {
-      
-        
+
         cpf = cpf.replaceAll("[^0-9]", "");
 
         if (cpf.length() != 11) {
@@ -122,8 +118,5 @@ public class novoUsuarioController {
 
         return cpf.charAt(9) == (char) (digitoverificador1 + '0')
                 && cpf.charAt(10) == (char) (digitoverificador2 + '0');
-            }
     }
-
-    
-    
+}

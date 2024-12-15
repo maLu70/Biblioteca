@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import jdbc.ConexaoMySQL;
 import model.Pessoa;
 
-import java.sql.Date;
-
 public class PessoaDao {
 
     public static boolean cadastrarUsuario(Pessoa usuario) {
