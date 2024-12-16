@@ -35,11 +35,8 @@ public class telaEmprestimoController {
     void voltar(ActionEvent event) throws IOException {
         URL url;
 
-        if (PaginaLoginController.getLogado().isAdm()) {
-            url = getClass().getResource("/view/telaInicialAdm.fxml");
-        } else {
-            url = getClass().getResource("/view/paginaCRUD.fxml");
-        }
+        url = getClass().getResource("/view/telaInicialAdm.fxml");
+        
 
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
@@ -71,5 +68,8 @@ public class telaEmprestimoController {
                 txtLivro.setText(Integer.toString(paginaCRUDController.getLivro().getIdLivro()));
             }
         }
+    }@FXML
+    void Entrar(ActionEvent event) {
+        
     }
 }

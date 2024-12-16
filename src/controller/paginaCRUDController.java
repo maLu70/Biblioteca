@@ -45,7 +45,7 @@ public class paginaCRUDController {
         return deleteeedit;
     }
 
-    public void setDeleteeedit(int deleteeedit) {
+    public static void setDeleteeedit(int deleteeedit) {
         paginaCRUDController.deleteeedit = deleteeedit;
     }
 
@@ -136,8 +136,15 @@ public class paginaCRUDController {
 
     @FXML
     void registrarDevolucao(ActionEvent event) throws IOException {
+
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
-        
+
+        if (livroaux == null) {
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setHeaderText("Erro ao registrar devolução");
+            alerta.setContentText("selecione um livro para devolver");
+            alerta.show();
+        } else {
         if(livroaux.getSituacao().equals("livre")) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("Erro ao devolver");
@@ -149,7 +156,7 @@ public class paginaCRUDController {
 
         setDeleteeedit(3);
     }
-
+    }
     @FXML
     void removerLivro(ActionEvent event) throws IOException {
         Livro livroselecionado = tblAcervo.getSelectionModel().getSelectedItem();
@@ -181,7 +188,7 @@ public class paginaCRUDController {
     @FXML
     void voltar(ActionEvent event) throws IOException {
 
-        URL url = getClass().getResource("/view/paginaInicial.fxml");
+        URL url = getClass().getResource("/view/telaInicialAdm.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();

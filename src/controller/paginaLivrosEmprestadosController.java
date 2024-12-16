@@ -25,13 +25,13 @@ import model.*;
 
 public class paginaLivrosEmprestadosController {
 
-    public static Livro livroaux;
+    public static Emprestimo livroaux;
 
-    public static Livro getLivro() {
+    public static Emprestimo getLivro() {
         return livroaux;
     }
 
-    public static void setLivro(Livro livroaux) {
+    public static void setLivro(Emprestimo livroaux) {
         paginaLivrosEmprestadosController.livroaux = livroaux;
     }
 
@@ -88,9 +88,17 @@ public class paginaLivrosEmprestadosController {
     @FXML
     void devolucao(ActionEvent event) {
 
-        livroaux = tblEmprestimos.getSelectionModel().getSelectedItem().getLivro();
-        LivroDao.devolucao(livroaux);
+        livroaux = tblEmprestimos.getSelectionModel().getSelectedItem();
+         if (livroaux == null) {
+            Alert alerta = new Alert(AlertType.INFORMATION);
+            alerta.setHeaderText("Erro ao registrar devolução");
+            alerta.setContentText("selecione um livro para devolver");
+            alerta.show();
+        } else {
+        LivroDao.devolucao(livroaux.getLivro());
+        }
     }
+
 
 
     @FXML

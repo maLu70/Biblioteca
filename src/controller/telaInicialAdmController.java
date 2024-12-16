@@ -13,7 +13,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class telaInicialAdmController {
@@ -28,6 +30,12 @@ public class telaInicialAdmController {
         telaInicialAdmController.comboboxvalue = comboboxvalue;
     }
 
+     @FXML
+    private Label lblsair;
+
+    @FXML
+    private Button btnsair;
+
     @FXML
     private Button btnAdicionar;
 
@@ -36,6 +44,9 @@ public class telaInicialAdmController {
 
     @FXML
     private ComboBox<String> comboBox;
+
+     @FXML
+    private Rectangle background;
 
     @FXML
     private TextField txtPesquisa;
@@ -82,6 +93,7 @@ public class telaInicialAdmController {
 
     @FXML
     void adicionarLivro(ActionEvent event) throws IOException {
+        paginaCRUDController.setDeleteeedit(5);
         URL url = getClass().getResource("/view/paginaEdicaoAdicao.fxml");
 
         FXMLLoader loader = new FXMLLoader(url);
@@ -103,6 +115,7 @@ public class telaInicialAdmController {
 
     @FXML
     void verEmprestimo(ActionEvent event) throws IOException {
+        
         URL url = getClass().getResource("/view/telaLivrosEmprestados.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
@@ -119,6 +132,23 @@ public class telaInicialAdmController {
     @FXML
     void initialize() {
         comboBox.getItems().addAll("Autor", "Editora", "Título");
-    }
+        btnsair.setBackground(null);
+        
 
+    }
+    @FXML
+    void clickbtnsair(ActionEvent event) throws IOException {
+        PaginaLoginController.setLogado(null);
+        URL url = getClass().getResource("/view/paginaInicial.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página Inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+    }
 }

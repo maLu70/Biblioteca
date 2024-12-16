@@ -40,7 +40,14 @@ public class PaginaInicialController {
     }
 
     @FXML
+    private Label lblsair;
+
+    @FXML
     private Button btnEntrar;
+
+    @FXML
+    private Button btnsair;
+
 
     @FXML
     private Label lblnomeusuario;
@@ -90,6 +97,10 @@ public class PaginaInicialController {
         }
     }
 
+    public Label getLblBemVindo() {
+        return lblBemVindo;
+    }
+
     @FXML
     void clickLogin(ActionEvent event) throws IOException {
 
@@ -112,12 +123,34 @@ public class PaginaInicialController {
     @FXML
     void initialize() {
 
+        lblsair.setVisible(false);
+        btnsair.setVisible(false);
+        btnsair.setBackground(lblBemVindo.getBackground());
+       
+
         if (PaginaLoginController.getLogado()!=null) {
             lblnomeusuario.setText("Bem vindo "+PaginaLoginController.getLogado().getNome()+"!");
             btnEntrar.setVisible(false);
             lblBemVindo.setVisible(false);
+            lblsair.setVisible(true);
+            btnsair.setVisible(true);
         }
         comboBox.getItems().addAll("Autor", "Editora", "Título");
         btnEntrar.setBackground(lblBemVindo.getBackground());
+    }
+    @FXML
+    void clickbtnsair(ActionEvent event) throws IOException {
+        PaginaLoginController.setLogado(null);
+        URL url = getClass().getResource("/view/paginaInicial.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("Página Inicial");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
 }
