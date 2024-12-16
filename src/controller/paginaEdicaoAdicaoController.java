@@ -73,15 +73,25 @@ public class paginaEdicaoAdicaoController {
                         txtTitulo.getText(), txtEditora.getText(), txtAutor.getText(), "Livre");
 
                 LivroDao.cadastrarLivro(livro);
-                System.out.println("livro adicionado");
 
-                txtAutor.setText(null);
-                txtCopias.setText(null);
-                txtEditora.setText(null);
-                txtPubli.setText(null);
-                txtTitulo.setText(null);
+                Alert alerta = new Alert(AlertType.INFORMATION);
+
+                URL url = getClass().getResource("/view/telaInicialAdm.fxml");
+                FXMLLoader loader = new FXMLLoader(url);
+                Parent root = loader.load();
+                Stage stgAcervo = new Stage();
+                stgAcervo.setTitle("Página Inicial");
+                stgAcervo.setScene(new Scene(root));
+                stgAcervo.show();
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                alerta.setHeaderText("Novo Livro");
+                alerta.setContentText("Livro Adiconado com Sucesso");
+                alerta.show();
 
             } else {
+                System.out.println("wjkhdfuwi");
                 Alert alerta = new Alert(AlertType.INFORMATION);
                 alerta.setHeaderText("Erro no Cadastro de Livro");
                 alerta.setContentText("Preencha totas as informações corretamente");
@@ -98,11 +108,6 @@ public class paginaEdicaoAdicaoController {
                 LivroDao.atualizarLivro(livro, livro.getAnoPublicacao(), livro.getAnoPublicacao(), livro.getTitulo(),
                         livro.getEditora(), livro.getAutor());
 
-                Alert alerta = new Alert(AlertType.INFORMATION);
-                alerta.setHeaderText("Atualização Realizado com Sucesso");
-                alerta.setContentText("O livro foi atualizado com sucesso no sistema.");
-                alerta.show();
-
                 URL url = getClass().getResource("/view/paginaCRUD.fxml");
                 FXMLLoader loader = new FXMLLoader(url);
                 Parent root = loader.load();
@@ -112,6 +117,11 @@ public class paginaEdicaoAdicaoController {
                 stgAcervo.show();
                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 currentStage.close();
+
+                Alert alerta = new Alert(AlertType.INFORMATION);
+                alerta.setHeaderText("Atualização Realizado com Sucesso");
+                alerta.setContentText("O livro foi atualizado com sucesso no sistema.");
+                alerta.show();
 
             } else {
                 Alert alerta = new Alert(AlertType.INFORMATION);

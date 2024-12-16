@@ -9,10 +9,9 @@ public class Emprestimo {
     Pessoa pessoa;
     String situacao;
 
-    public Emprestimo(Date dtEmprestimo, Date dtDevolucao, int idEmprestimo, Livro livro, Pessoa pessoa) {
+    public Emprestimo(Date dtEmprestimo, Date dtDevolucao, Livro livro, Pessoa pessoa) {
         this.dtEmprestimo = dtEmprestimo;
         this.dtDevolucao = dtDevolucao;
-        this.idEmprestimo = idEmprestimo;
         this.livro = livro;
         this.pessoa = pessoa;
     }

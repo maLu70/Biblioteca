@@ -2,7 +2,12 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.util.Calendar;
 
+import dao.EmprestimoDao;
+import dao.LivroDao;
+import dao.PessoaDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Emprestimo;
 
 public class telaEmprestimoController {
 
@@ -36,7 +42,6 @@ public class telaEmprestimoController {
         URL url;
 
         url = getClass().getResource("/view/telaInicialAdm.fxml");
-        
 
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
@@ -68,8 +73,33 @@ public class telaEmprestimoController {
                 txtLivro.setText(Integer.toString(paginaCRUDController.getLivro().getIdLivro()));
             }
         }
-    }@FXML
-    void Entrar(ActionEvent event) {
-        
+    }
+
+    @FXML
+    void Entrar(ActionEvent event) throws IOException {
+
+        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+        Emprestimo emprestimo = new Emprestimo(date, Date.valueOf(date.toLocalDate().plusDays(7)),
+                LivroDao.buscarLivroPorId(Integer.parseInt(txtLivro.getText())),
+                PessoaDao.buscarPessoa(txtCPF.getText()));
+
+        EmprestimoDao.emprestar(emprestimo);
+
+        System.out.println("emprestei");
+
+        URL url = getClass().getResource("/view/telaInicialAdm.fxml");
+
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+
+        Stage stgAcervo = new Stage();
+        stgAcervo.setTitle("pagina CRUD");
+        stgAcervo.setScene(new Scene(root));
+        stgAcervo.show();
+
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
+
     }
 }

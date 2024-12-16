@@ -95,7 +95,21 @@ public class paginaLivrosEmprestadosController {
             alerta.setContentText("selecione um livro para devolver");
             alerta.show();
         } else {
+
+        EmprestimoDao.devolver(livroaux.getIdEmprestimo());
         LivroDao.devolucao(livroaux.getLivro());
+        codigo.setCellValueFactory(new PropertyValueFactory<>("idEmprestimo"));
+        autor.setCellValueFactory(new PropertyValueFactory<>("livroAutor"));
+        devolucao.setCellValueFactory(new PropertyValueFactory<>("dtDevolucao"));
+        emprestimo.setCellValueFactory(new PropertyValueFactory<>("dtEmprestimo"));
+        titulo.setCellValueFactory(new PropertyValueFactory<>("livroTitulo"));
+        usuario.setCellValueFactory(new PropertyValueFactory<>("pessoaCpf"));
+        editora.setCellValueFactory(new PropertyValueFactory<>("situacao"));
+
+        obsLiv = FXCollections.observableList(EmprestimoDao.listarEmprestimo());
+        System.out.println(obsLiv.size());
+
+        tblEmprestimos.setItems(obsLiv);
         }
     }
 

@@ -53,7 +53,7 @@ public class PaginaLoginController {
     void Entrar(ActionEvent event) throws IOException {
         String cpf, senha;
 
-        cpf = txtCPF.getText();
+        cpf = txtCPF.getText().replaceAll("[^0-9]", "");
         senha = txtSenha.getText();
 
         if (PessoaDao.verificarLogin(cpf, senha) == false) {

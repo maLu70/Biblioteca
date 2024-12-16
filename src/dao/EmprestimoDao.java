@@ -10,7 +10,6 @@ import java.util.List;
 import jdbc.ConexaoMySQL;
 import model.Emprestimo;
 
-
 public class EmprestimoDao {
 
     public static boolean emprestar(Emprestimo emprestimo) {
@@ -19,20 +18,20 @@ public class EmprestimoDao {
         sql = "INSERT INTO Emprestimo (dtEmprestimo, dtDevolucao, idLivro, cpf, situacao) ";
         sql += "VALUES (?, ?, ?, ?, ?)";
 
-        sql += "update Livro set situacao=? where idLivro=?";
+        // sql += "update Livro set situacao=? where idLivro=?;";
 
         try (Connection con = ConexaoMySQL.getConexao()) {
 
             PreparedStatement ps = con.prepareStatement(sql);
 
-            ps.setDate(1, emprestimo.getDtEmprestimo());
-            ps.setDate(2, emprestimo.getDtDevolucao());
+            ps.setObject(1, emprestimo.getDtEmprestimo());
+            ps.setObject(2, emprestimo.getDtDevolucao());
             ps.setInt(3, emprestimo.getLivro().getIdLivro());
             ps.setString(4, emprestimo.getPessoa().getCpf());
-            ps.setString(5, "ativo");
+            ps.setString(5, "em dia");
 
-            ps.setString(6, "emprestado");
-            ps.setInt(7, emprestimo.getLivro().getIdLivro());
+            // ps.setString(6, "emprestado");
+            // ps.setInt(7, emprestimo.getLivro().getIdLivro());
 
             return (ps.executeUpdate() > 0);
 
@@ -40,6 +39,7 @@ public class EmprestimoDao {
             System.out.println("ERRO AO emprestar: " + e.getMessage());
             return false;
         }
+
     }
 
     public static List<Emprestimo> listarEmprestimo() {
@@ -72,6 +72,23 @@ public class EmprestimoDao {
         } catch (SQLException erro) {
             System.out.println("Erro: " + erro.getMessage());
             return null;
+        }
+    }
+
+    public static boolean devolver(int id) {
+
+        String sql = "update emprestimo set situacao=? WHERE idEmprestimo=?";
+
+        try (Connection con = ConexaoMySQL.getConexao()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, "inativo");
+            ps.setInt(2, id);
+
+            return (ps.executeUpdate() > 0);
+
+        } catch (SQLException erro) {
+            System.out.println("Erro: " + erro.getMessage());
+            return false;
         }
     }
 
