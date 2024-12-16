@@ -85,7 +85,8 @@ public class paginaCRUDController {
     @FXML
     private Button btnVoltar;
 
-    @FXML Label lblResultado;
+    @FXML
+    Label lblResultado;
 
     @FXML
     private TableView<Livro> tblAcervo;
@@ -139,38 +140,34 @@ public class paginaCRUDController {
 
         livroaux = tblAcervo.getSelectionModel().getSelectedItem();
 
-        if (livroaux == null) {
+        if (livroaux == null || (livroaux.getSituacao() == "livre")) {
             Alert alerta = new Alert(AlertType.INFORMATION);
             alerta.setHeaderText("Erro ao registrar devolução");
             alerta.setContentText("selecione um livro para devolver");
             alerta.show();
+
         } else {
-        if(livroaux.getSituacao().equals("livre")) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("Erro ao devolver");
-            alert.setContentText("O livro não está emprestado");
-            alert.show();
-        } else {
+            System.out.println("aqui");
             LivroDao.devolucao(livroaux);
         }
 
         setDeleteeedit(3);
     }
-    }
+
     @FXML
     void removerLivro(ActionEvent event) throws IOException {
         Livro livroselecionado = tblAcervo.getSelectionModel().getSelectedItem();
 
         if (livroselecionado != null) {
             LivroDao.delete(livroselecionado);
-        } 
-        
-         else {
-             Alert alert = new Alert(AlertType.INFORMATION);
-             alert.setHeaderText("Erro ao deletar");
-             alert.setContentText("Selcione um livro");
-             alert.show();
-         }
+        }
+
+        else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Erro ao deletar");
+            alert.setContentText("Selcione um livro");
+            alert.show();
+        }
 
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("autor"));
@@ -178,7 +175,7 @@ public class paginaCRUDController {
         coleditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colpub.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); 
+        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 
         obsLiv = FXCollections.observableList(LivroDao.listartudo(""));
 
@@ -208,14 +205,13 @@ public class paginaCRUDController {
     void initialize(String titulo) {
         btnVoltar.setBackground(lblResultado.getBackground());
 
-
         colcod.setCellValueFactory(new PropertyValueFactory<>("idLivro"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         colcopias.setCellValueFactory(new PropertyValueFactory<>("nCopias"));
         coleditora.setCellValueFactory(new PropertyValueFactory<>("editora"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         colpub.setCellValueFactory(new PropertyValueFactory<>("anoPublicacao"));
-        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao")); 
+        colsituacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
 
         obsLiv = FXCollections.observableList(LivroDao.listar(titulo));
 
